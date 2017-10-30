@@ -32,6 +32,7 @@ ssh $USERNAME@users2017.cs.helsinki.fi "
 chmod a+x htdocs/$PROJECT_FOLDER
 chmod a+r htdocs/$PROJECT_FOLDER/.htaccess
 chmod -R a+r htdocs/$PROJECT_FOLDER/assets
+chmod 755 $(find htdocs/PROJECT_FOLDER/assets/ -type d)
 cd htdocs/$PROJECT_FOLDER
 wget https://getcomposer.org/download/1.2.4/composer.phar
 php composer.phar install
