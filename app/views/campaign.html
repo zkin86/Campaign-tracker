@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Kampanjan tiedot</h1>
+  <!-- Painikkeet tähän -->
+  <p>
+    <button class="btn btn-danger">Poista</button> <a href="#" class="btn btn-default">Muokkaa</a>
+  </p>
+  <!-- Kampanjan tiedot tulee listana tähän -->
+    <ul>
+      <li><strong>Omistaja: </strong>pertti pelaaja</li>
+      <li><strong>Saavutukset: </strong>Rotanraato</li>
+    </ul>
+  <h2>ryhmät</h2>
+    <ul>
+      <li><strong>ryhmä 1 linkki</strong></li>
+      <li><strong>ryhmä 2 linkki</strong></li>
+    </ul>
+
+  <div class="content">
+    {% block party %}{% endblock%}
+  </div>
+{% endblock %}

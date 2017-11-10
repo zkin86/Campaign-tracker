@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Käyttäjän pertti pelaaja kampanjan x historia</h1>
+
+  <p>
+    <a href="#" class="btn btn-success">Lisää viimeksi pelattu skenaario</a>
+  </p>
+  <p>näyttää viisi viimeksi suoritettua skenaariota?</p>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Ryhmä</th>
+        <th>Skenaario</th>
+        <th>Päivä</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- Listataan pelit tähän -->
+      <tr>
+        <td><a href="#">ryhmän linkki</a></td>
+        <td>nimi tai numero</td>
+        <td>9.12.2017</td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}

@@ -8,7 +8,30 @@
     }
 
     public static function sandbox(){
-      // Testaa koodiasi täällä
-      echo 'Hello World!';
+      View::make('helloworld.html');
+    }
+
+    public static function kirjautuminen(){
+      View::make('login.html');
+    }
+
+    public static function historia(){
+      View::make('historia.html');
+    }
+
+    public static function ryhma(){
+      View::make('party.html');
+    }
+
+    public static function tavarat(){
+      View::make('tavarat.html');
+    }
+
+    public static function hahmo(){
+      View::make('hahmo.html');
+    }
+
+    public static function kampanja(){
+      View::make('campaign.html');
     }
   }
