@@ -20,17 +20,6 @@ class CampaignController extends BaseController{
 
     //Redirect::to('/campaign/' . $campaign->id, array('message' => 'Kampanja on lisätty!'));
   }
-
-  public function save(){
-    $query = DB::connection()->prepare('INSERT INTO Campaign(name, omistaja_id) VALUES (:name, :omistaja_id');
-    $query->execute(array('name' => $this->name, 'omistaja_id' => $this->omistaja_id));
-    $row = $query->fetch();
-    Kint::trace();
-    Kint::dump($row);
-    
-    //$this->id = $row['id'];
-  }
-
   public static function new(){
   	View::make('campaign/new.html');
   }

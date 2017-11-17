@@ -2,15 +2,19 @@
 {% block content %}
   <h1>Lisää peli kirjastoosi</h1>
 
-  <form method="post" action="{{base_path}}/tsoha/game">
+  <form method="post" action="{{base_path}}/campaign">
     <div class="form-group">
       <label>Nimi</label>
       <input name="name" class="form-control" type="text">
     </div>
 
     <div class="form-group">
-      <label>omistaja</label>
-      <input name="publisher" class="form-control" type="number">
+      <label>omistajan tunnus</label>
+      <input name="omistaja_id" class="form-control" type="number">
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Lisää</button>
     </div>
 
   </form>

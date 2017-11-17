@@ -38,4 +38,15 @@ class Campaign extends BaseModel{
 
     return null;
   }
+
+  public function save(){
+    $query = DB::connection()->prepare('INSERT INTO Campaign(omistaja_id, name) VALUES (:omistaja_id, :name);');
+    $query->execute(array('name' => $this->name, 'omistaja_id' => $this->omistaja_id));
+    $row = $query->fetch();
+    Kint::trace();
+    Kint::dump($row);
+    
+    //$this->id = $row['id'];
+  }
+
 }
