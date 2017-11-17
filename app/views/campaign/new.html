@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Lisää peli kirjastoosi</h1>
+
+  <form method="post" action="{{base_path}}/tsoha/game">
+    <div class="form-group">
+      <label>Nimi</label>
+      <input name="name" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>omistaja</label>
+      <input name="publisher" class="form-control" type="number">
+    </div>
+
+  </form>
+{% endblock %}

@@ -28,6 +28,27 @@
     HelloWorldController::kampanja();
   });
 
+  $routes->get('/campaign', function() {
+  	CampaignController::index();
+  });
+
   $routes->get('/hahmo', function() {
     HelloWorldController::hahmo();
   });
+
+  $routes->post('/campaign', function(){
+  CampaignController::store();
+	});
+
+  $routes->get('/campaign/new', function(){
+  CampaignController::new();
+  });
+
+
+  //$routes->get('/campaign/new', function(){
+  //CampaignController::create();
+  //});
+
+  //$routes->get('/campaign/:id', function($id){
+  //CampaignController::show($id);
+  //});

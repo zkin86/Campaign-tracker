@@ -1,14 +1,14 @@
 -- Lisää CREATE TABLE lauseet tähän tiedostoon
 CREATE TABLE Omistaja(
-  id SERIAL PRIMARY KEY, -- SERIAL tyyppinen pääavain pitää huolen, että tauluun lisätyllä rivillä on aina uniikki pääavain. Kätevää!
-  name varchar(50) NOT NULL, -- Muista erottaa sarakkeiden määrittelyt pilkulla!
+  id SERIAL PRIMARY KEY,
+  name varchar(50) NOT NULL,
   password varchar(50) NOT NULL
 );
 
 CREATE TABLE Kampanja(
   id SERIAL PRIMARY KEY,
   omistaja_id INTEGER REFERENCES Omistaja(id),
-  name varchar(50) NOT NULL,
+  name varchar(50) NOT NULL
 );
 
 CREATE TABLE Ryhma(
@@ -16,6 +16,11 @@ CREATE TABLE Ryhma(
   kampanja_id INTEGER REFERENCES Kampanja(id),
   name varchar(50) NOT NULL,
   perustettu DATE
+);
+
+CREATE TABLE Hahmoluokka(
+  id SERIAL PRIMARY KEY,
+  name varchar(50) NOT NULL
 );
 
 CREATE TABLE Hahmo(
@@ -26,11 +31,6 @@ CREATE TABLE Hahmo(
   pelaaja_name varchar(50) NOT NULL,
   tarina varchar(400),
   added DATE
-);
-
-CREATE TABLE Hahmoluokka(
-  id SERIAL PRIMARY KEY,
-  name varchar(50) NOT NULL,
 );
 
 
