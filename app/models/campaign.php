@@ -40,7 +40,7 @@ class Campaign extends BaseModel{
   }
 
   public function save(){
-    $query = DB::connection()->prepare('INSERT INTO Campaign(omistaja_id, name) VALUES (:omistaja_id, :name);');
+    $query = DB::connection()->prepare('INSERT INTO Kampanja(omistaja_id, name) VALUES (:omistaja_id, :name);');
     $query->execute(array('name' => $this->name, 'omistaja_id' => $this->omistaja_id));
     $row = $query->fetch();
     Kint::trace();

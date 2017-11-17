@@ -18,7 +18,7 @@ class CampaignController extends BaseController{
 
     $campaign->save();
 
-    //Redirect::to('/campaign/' . $campaign->id, array('message' => 'Kampanja on lisätty!'));
+    Redirect::to('/campaign');
   }
   public static function new(){
   	View::make('campaign/new.html');
