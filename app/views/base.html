@@ -44,10 +44,16 @@
          <li><a href="historia">Historia</a></li>
          <li><a href="hahmo">hahmo</a></li>
         </ul>
-
+        {% block kirjautunut %}
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="kirjautuminen">Kirjaudu sisään</a></li>
+          {% if user_logged_in %}
+            <li><a href="exit">Kirjaudu ulos</a></li>
+          {% else %}
+            <li><a href="kirjautuminen">Kirjaudu sisään</a></li>
+          {% endif %}
+          
         </ul>
+        {% endblock %}
       </div>
     </div>
   </nav>

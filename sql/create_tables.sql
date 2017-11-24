@@ -1,7 +1,7 @@
 -- Lisää CREATE TABLE lauseet tähän tiedostoon
 CREATE TABLE Omistaja(
   id SERIAL PRIMARY KEY,
-  name varchar(50) NOT NULL,
+  name varchar(50) NOT NULL UNIQUE,
   password varchar(50) NOT NULL
 );
 

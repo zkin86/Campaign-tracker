@@ -7,11 +7,11 @@ class CampaignController extends BaseController{
   }
 
   public static function store(){
-
-	$params = $_POST;
+    $user = self::get_user_logged_in();
+	  $params = $_POST;
     $campaign = new Campaign(array(
       'name' => $params['name'],
-      'omistaja_id' => $params['omistaja_id']
+      'omistaja_id' => $user['id']
     ));
 
     Kint::dump($params);

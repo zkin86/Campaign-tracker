@@ -37,11 +37,19 @@
   });
 
   $routes->post('/campaign', function(){
-  CampaignController::store();
+    CampaignController::store();
 	});
 
   $routes->get('/campaign/new', function(){
-  CampaignController::new();
+    CampaignController::new();
+  });
+
+  $routes->get('/login', function(){
+    UserController::login();
+  });
+
+  $routes->post('/login', function(){
+    UserController::handle_login();
   });
 
 
