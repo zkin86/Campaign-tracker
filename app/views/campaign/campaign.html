@@ -19,13 +19,13 @@
     <h2>ryhmät</h2>
     <ul>
       {% for party in parties %}
-        <li><a href="{{base_path}}/campaign/{{attributes.id}}/{{party.id}}">{{party.name}}</a>
+        <li><a href="{{base_path}}/campaign/{{party.kampanja_id}}/{{party.id}}">{{party.name}}</a>
       {% endfor %}
     </ul>
     {% endif %}
 
   <div class="content">
-    {% block party %}{% endblock%}
+    {% block party %}{% endblock %}
   </div>
 
   {% if message %}

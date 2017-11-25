@@ -13,7 +13,7 @@ class Party extends BaseModel{
     if($row){
       $party = new Party(array(
         'id' => $row['id'],
-        'kampanja_id' => $row['omistaja_id'],
+        'kampanja_id' => $row['kampanja_id'],
         'name' => $row['name'],
       ));
 
