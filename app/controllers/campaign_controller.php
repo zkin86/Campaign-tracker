@@ -22,4 +22,19 @@ class CampaignController extends BaseController{
   public static function new(){
   	View::make('campaign/new.html');
   }
+
+  public static function edit($id){
+    $campaign = Campaign::find($id);
+    View::make('campaign/edit.html', array('attributes' => $campaign));
+  }
+
+  public static function info($id){
+    $campaign = Campaign::find($id);
+    View::make('campaign/campaign.html', array('attributes' => $campaign));
+  }
+
+  public static function destroy($id) {
+    Campaign::delete($id);
+    Redirect::to('/campaign', array('message' => 'Tuhosit juuri kampanjan pysyvästi'));
+  }
 }

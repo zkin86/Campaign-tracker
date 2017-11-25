@@ -1,0 +1,38 @@
+{% import "macros/forms.html" as forms %}
+{% extends "base.html" %}
+{% block content %}
+  <h1>Kampanjan {{attributes.name}} tiedot</h1>
+  <!-- Painikkeet tähän -->
+  <p>
+  <!-- Poistopainike tulee tähän -->
+  {{forms.destroy_button("#{base_path}/campaign/#{attributes.id}/destroy", "Poista kampanja")}}
+  <a href="{{base_path}}/campaign/{{attributes.id}}/edit" class="btn btn-default">Muokkaa</a>
+</p>
+  <!-- Kampanjan tiedot tulee listana tähän -->
+  <h2>Perustiedot</h2>
+    <ul>
+      <li><strong>Omistaja: </strong>{{user_logged_in.name}}</li>
+      <li><strong>Saavutukset: </strong>attribuutti vielä puuttuu</li>
+    </ul>
+  <h2>ryhmät</h2>
+    <ul>
+      <li><strong>ryhmä 1 linkki</strong></li>
+      <li><strong>ryhmä 2 linkki</strong></li>
+    </ul>
+
+  <div class="content">
+    {% block party %}{% endblock%}
+  </div>
+
+  {% if message %}
+      <div class="alert alert-success">
+        {{message}}
+      </div>
+  {% endif %}
+
+  {% if error %}
+    <div class="alert alert-danger">
+      {{error}}
+    </div>
+  {% endif %}
+{% endblock %}

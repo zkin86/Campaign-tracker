@@ -46,7 +46,7 @@ class Campaign extends BaseModel{
     $row = $query->fetch();
 
     if($row){
-      $game = new Game(array(
+      $campaign = new Campaign(array(
         'id' => $row['id'],
         'omistaja_id' => $row['omistaja_id'],
         'name' => $row['name'],
@@ -68,4 +68,8 @@ class Campaign extends BaseModel{
     //$this->id = $row['id'];
   }
 
+  public static function delete($id){
+    $query = DB::connection()->prepare('DELETE FROM Kampanja WHERE id = :id');
+    $query->execute(array('id' => $id));
+  }
 }

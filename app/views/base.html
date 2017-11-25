@@ -33,23 +33,23 @@
           <span class="icon-bar"></span>
         </button>
         <!-- Sovelluksen nimi -->
-        <a class="navbar-brand" href=".">Kampanjaträkkeri</a>
+        <a class="navbar-brand" href="{{base_path}}">Kampanjaträkkeri</a>
       </div>
 
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="nav navbar-nav">
          <!-- Navigaation linkit -->
-         <li><a href="kampanja">kampanja</a></li>
-         <li><a href="ryhma">Ryhmät</a></li>
-         <li><a href="historia">Historia</a></li>
-         <li><a href="hahmo">hahmo</a></li>
+         <li><a href="{{base_path}}/kampanja">kampanja</a></li>
+         <li><a href="{{base_path}}/ryhma">Ryhmät</a></li>
+         <li><a href="{{base_path}}/historia">Historia</a></li>
+         <li><a href="{{base_path}}/hahmo">hahmo</a></li>
         </ul>
         {% block kirjautunut %}
         <ul class="nav navbar-nav navbar-right">
           {% if user_logged_in %}
-            <li><a href="exit">Kirjaudu ulos</a></li>
+            <li><a href="{{base_path}}/exit">Kirjaudu ulos</a></li>
           {% else %}
-            <li><a href="kirjautuminen">Kirjaudu sisään</a></li>
+            <li><a href="{{base_path}}/kirjautuminen">Kirjaudu sisään</a></li>
           {% endif %}
           
         </ul>

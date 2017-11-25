@@ -56,6 +56,26 @@
     UserController::logout();
   });
 
+  $routes->get('/campaign/:id/edit', function($id){
+
+  CampaignController::edit($id);
+  });
+
+  $routes->get('/campaign/:id', function($id){
+
+  CampaignController::info($id);
+  });
+  
+  $routes->post('/campaign/:id/edit', function($id){
+
+  CampaignController::update($id);
+  });
+
+  $routes->post('/campaign/:id/destroy', function($id){
+
+  CampaignController::destroy($id);
+  });
+
 
   //$routes->get('/campaign/new', function(){
   //CampaignController::create();
