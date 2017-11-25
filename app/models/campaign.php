@@ -21,6 +21,25 @@ class Campaign extends BaseModel{
 
     return $campaigns;
   }
+
+  public static function all_for_user($id) {
+    $query = DB::connection()->prepare('SELECT * FROM Kampanja WHERE omistaja_id = :id');
+    $query->execute(array('id' => $id));
+    $rows = $query->fetchAll();
+    $campaigns = array();
+
+    foreach($rows as $row){
+      // Tämä on PHP:n hassu syntaksi alkion lisäämiseksi taulukkoon :)
+      $campaigns[] = new Campaign(array(
+        'id' => $row['id'],
+        'omistaja_id' => $row['omistaja_id'],
+        'name' => $row['name'],
+      ));
+    }
+
+    return $campaigns;
+  }
+
   public static function find($id){
     $query = DB::connection()->prepare('SELECT * FROM Kampanja WHERE id = :id LIMIT 1');
     $query->execute(array('id' => $id));

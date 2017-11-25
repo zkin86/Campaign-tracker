@@ -52,6 +52,10 @@
     UserController::handle_login();
   });
 
+  $routes->get('/exit', function() {
+    UserController::logout();
+  });
+
 
   //$routes->get('/campaign/new', function(){
   //CampaignController::create();

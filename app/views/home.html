@@ -11,4 +11,11 @@
   		Täällä voit seurata ja pitää kirjaa <a href="http://www.cephalofair.com/gloomhaven" class="btn btn-primary btn-lg">Gloomhaven</a>-lautapelin kampanjasta ja siihen liittyvistä jutuista.
   	</p>
   </div>
+
+  {% if message %}
+      <div class="alert alert-success">
+        {{message}}
+      </div>
+  {% endif %}
+
 {% endblock %}
