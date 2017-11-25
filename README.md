@@ -11,6 +11,8 @@ Yleisiä linkkejä:
 * [Linkki dokumentaatiooni](https://github.com/zkin86/Campaign-tracker/blob/master/doc/dokumentaatio.pdf)
 * [Linkki kampanjan lisäys ja muokkaussivulle](http://ejmlehti.users.cs.helsinki.fi/tsoha/campaign)
 
+sivulle voi kirjautua tunnuksella testaaja ja salasanalla erittäinvaikeasalasana
+
 ## Työn aihe
 
 Työni aiheena on kampanjanseuraustyökalu lautapelille [Gloomhaven](http://www.cephalofair.com/gloomhaven) 
