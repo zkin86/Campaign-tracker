@@ -19,9 +19,6 @@
       {% for campaign in campaigns %}
         <tr>
           <td><a href="{{base_path}}/campaign/{{campaign.id}}">{{campaign.name}}</td>
-
-          <td><a class="btn btn-default btn-sm" href="{{base_path}}/campaign/{{campaign.id}}/edit">Muokkaa</a></td>
-          <td>{{forms.destroy_button("#{base_path}/campaign/#{campaign.id}/destroy", "Poista kampanja!")}}</td>
         </tr>
       {% endfor %}
     </tbody>

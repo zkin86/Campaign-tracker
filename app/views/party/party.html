@@ -1,0 +1,28 @@
+{% extends "campaign.html" %}
+{% block party %}
+  <h1>Ryhmän rämä tiedot</h1>
+  <p>Ryhmän kokoonpano</p>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Hahmo</th>
+        <th>Hahmoluokka</th>
+        <th>Taso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Listataan hahmot tähän -->
+      <tr>
+        <td><a href="#">hahmon linkki</a></td>
+        <td>örkki</td>
+        <td>100</td>
+      </tr>
+    </tbody>
+  </table>
+    <!--Yksittäisen hahmon tiedot seuraavaksi-->
+    <div class="content">
+      {% block char %}{% endblock %}
+    </div>
+
+
+{% endblock %}

@@ -61,6 +61,11 @@
   CampaignController::edit($id);
   });
 
+  $routes->get('/campaign/:campaignid/:id', function($id){
+
+  PartyController::info($id);
+  });
+
   $routes->get('/campaign/:id', function($id){
 
   CampaignController::info($id);

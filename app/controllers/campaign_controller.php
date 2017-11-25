@@ -30,7 +30,9 @@ class CampaignController extends BaseController{
 
   public static function info($id){
     $campaign = Campaign::find($id);
-    View::make('campaign/campaign.html', array('attributes' => $campaign));
+    require_once 'app/models/party.php';
+    $parties = Party::all_for_campaign($id);
+    View::make('campaign/campaign.html', array('attributes' => $campaign, 'parties' => $parties));
   }
 
   public static function destroy($id) {
