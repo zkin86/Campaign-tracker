@@ -8,7 +8,8 @@ CREATE TABLE Omistaja(
 CREATE TABLE Kampanja(
   id SERIAL PRIMARY KEY,
   omistaja_id INTEGER REFERENCES Omistaja(id),
-  name varchar(50) NOT NULL
+  name varchar(50) NOT NULL,
+  prosperity INTEGER NOT NULL DEFAULT 1
 );
 
 CREATE TABLE Ryhma(
@@ -28,7 +29,16 @@ CREATE TABLE Hahmo(
   ryhma_id INTEGER REFERENCES Ryhma(id),
   hahmoluokka_id INTEGER REFERENCES Hahmoluokka(id),
   hahmo_name varchar(50) NOT NULL,
-  pelaaja_name varchar(50) NOT NULL
+  pelaaja_name varchar(50) NOT NULL,
+  kulta INTEGER NOT NULL DEFAULT 30,
+  exp INTEGER NOT NULL DEFAULT 0,
+  taso INTEGER NOT NULL DEFAULT 1
+);
+
+CREATE TABLE CampaignAchievements(
+  id SERIAL PRIMARY KEY,
+-- ehkä kuitenkin liitoslista?  kampanja_id INTEGER REFERENCES Kampanja(id)
+  name varchar(50) NOT NULL
 );
 
 

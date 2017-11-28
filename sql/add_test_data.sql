@@ -36,18 +36,18 @@ INSERT INTO Hahmoluokka(name) VALUES ('Tinkerer');
 
 INSERT INTO Hahmoluokka(name) VALUES ('Craighart');
 
-INSERT INTO Hahmo(ryhma_id, hahmoluokka_id, hahmo_name, pelaaja_name) VALUES (1,1,'Brutus', 'Pertti Pelaaja');
+INSERT INTO Hahmo(ryhma_id, hahmoluokka_id, hahmo_name, pelaaja_name, kulta) VALUES (1,1,'Brutus', 'Pertti Pelaaja', 60);
 
-INSERT INTO Hahmo(ryhma_id, hahmoluokka_id, hahmo_name, pelaaja_name) VALUES (1,2,'Epatto valapatto', 'Mauno mato');
+INSERT INTO Hahmo(ryhma_id, hahmoluokka_id, hahmo_name, pelaaja_name, taso) VALUES (1,2,'Epatto valapatto', 'Mauno mato', 2);
 
-INSERT INTO Hahmo(ryhma_id, hahmoluokka_id, hahmo_name, pelaaja_name) VALUES (2,1,'Brutus', 'Pertti Pelaaja');
+INSERT INTO Hahmo(ryhma_id, hahmoluokka_id, hahmo_name, pelaaja_name) VALUES (2,1,'Brutus', 'joku muu');
 
-INSERT INTO Hahmo(ryhma_id, hahmoluokka_id, hahmo_name, pelaaja_name) VALUES (2,5,'temppuilija', 'Pertti Pelaaja');
+INSERT INTO Hahmo(ryhma_id, hahmoluokka_id, hahmo_name, pelaaja_name) VALUES (2,5,'temppuilija', 'joku toinen');
 
-INSERT INTO Hahmo(ryhma_id, hahmoluokka_id, hahmo_name, pelaaja_name) VALUES (2,3,'taikuri', 'Pertti Pelaaja');
+INSERT INTO Hahmo(ryhma_id, hahmoluokka_id, hahmo_name, pelaaja_name) VALUES (2,3,'taikuri', 'kuka muu');
 
-INSERT INTO Hahmo(ryhma_id, hahmoluokka_id, hahmo_name, pelaaja_name) VALUES (2,4,'aivorotta', 'Pertti Pelaaja');
+INSERT INTO Hahmo(ryhma_id, hahmoluokka_id, hahmo_name, pelaaja_name) VALUES (2,4,'aivorotta', 'nimellinen');
 
-INSERT INTO Hahmo(ryhma_id, hahmoluokka_id, hahmo_name, pelaaja_name) VALUES (3,3,'Brutus', 'Pertti Pelaaja');
+INSERT INTO Hahmo(ryhma_id, hahmoluokka_id, hahmo_name, pelaaja_name) VALUES (3,3,'taikahämis', 'nimetön');
 
-INSERT INTO Hahmo(ryhma_id, hahmoluokka_id, hahmo_name, pelaaja_name) VALUES (3,4,'Brutus', 'Pertti Pelaaja');
+INSERT INTO Hahmo(ryhma_id, hahmoluokka_id, hahmo_name, pelaaja_name) VALUES (3,4,'lempivaras', 'testipelaaja');

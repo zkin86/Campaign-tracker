@@ -1,28 +1,38 @@
 {% import "macros/forms.html" as forms %}
 {% extends "base.html" %}
 {% block content %}
-  <h1>Kampanjan {{attributes.name}} tiedot</h1>
+  <h1>{{attributes.name}}</h1>
   <!-- Painikkeet tähän -->
   <p>
   <!-- Poistopainike tulee tähän -->
   {{forms.destroy_button("#{base_path}/campaign/#{attributes.id}/destroy", "Poista kampanja")}}
   <a href="{{base_path}}/campaign/{{attributes.id}}/edit" class="btn btn-default">Muokkaa</a>
 </p>
-  <!-- Kampanjan tiedot tulee listana tähän -->
-  <h2>Perustiedot</h2>
-    <ul>
-      <li><strong>Omistaja: </strong>{{user_logged_in.name}}</li>
-      <li><strong>Saavutukset: </strong>attribuutti vielä puuttuu</li>
-    </ul>
-
-    {% if parties %}
-    <h2>ryhmät</h2>
-    <ul>
-      {% for party in parties %}
-        <li><a href="{{base_path}}/campaign/{{party.kampanja_id}}/{{party.id}}">{{party.name}}</a>
-      {% endfor %}
-    </ul>
-    {% endif %}
+  <table>
+    <tr>
+      <td><h2>Perustiedot</h2></td>
+      {% if parties %}
+      <td><h2>Ryhmät</h2></td>
+      {% endif %}
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li><strong>Omistaja: </strong>{{user_logged_in.name}}</li>
+          <li><strong>Saavutukset: </strong>attribuutti vielä puuttuu</li>
+        </ul>
+      </td>
+      {% if parties %}
+      <td>
+        <ul>
+          {% for party in parties %}
+            <li><a href="{{base_path}}/campaign/{{party.kampanja_id}}/{{party.id}}">{{party.name}}</a>
+          {% endfor %}
+        </ul>
+      </td>
+      {% endif %}
+    </tr>
+  </table>
 
   <div class="content">
     {% block party %}{% endblock %}

@@ -1,6 +1,6 @@
 <?php
 class Character extends BaseModel{
-  public $id, $party, $luokka, $name, $pname;// $kulta, $taso, $exp;
+  public $id, $party, $luokka, $name, $pname, $gold, $lvl, $exp;
   public function __construct($attributes){
     parent::__construct($attributes);
   }
@@ -45,15 +45,17 @@ class Character extends BaseModel{
   }
 
   public static function find($id){
-    $query = DB::connection()->prepare('SELECT Hahmo.id AS id, Hahmoluokka.name AS luokka, Hahmo.hahmo_name AS name, Hahmo.pelaaja_name AS pname FROM Hahmo LEFT JOIN Hahmoluokka ON Hahmo.hahmoluokka_id=Hahmoluokka.id WHERE Hahmo.id = :id');
+    $query = DB::connection()->prepare('SELECT * FROM Hahmo LEFT JOIN Hahmoluokka ON Hahmo.hahmoluokka_id=Hahmoluokka.id WHERE Hahmo.id = :id');
     $query->execute(array('id' => $id));
     $row = $query->fetch();
 
     if($row){
       $character = new Character(array(
-        'luokka' => $row['luokka'],
-        'name' => $row['name'],
-        'pname' => $row['pname'],
+	'id' => $id,
+        'name' => $row['hahmo_name'],
+        'gold' => $row['kulta'],
+        'exp' => $row['exp'],
+        'lvl' => $row['taso'],
       ));
 
       return $character;

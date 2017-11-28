@@ -33,10 +33,11 @@ class CharacterController extends BaseController{
 
   public static function info($cid, $pid, $id){
     $parties = Party::all_for_campaign($cid);
+    $party = Party::find($pid);
     $characters = Character::all_for_party($pid);
     $character = Character::find($id);
     $campaign = Campaign::find($cid);
-    View::make('character/character.html', array('attributes' => $campaign, 'parties' => $parties, 'characters' => $characters, 'character' => $character));
+    View::make('character/character.html', array('attributes' => $campaign, 'parties' => $parties, 'party' => $party, 'characters' => $characters, 'character' => $character));
   }
 
 //  public static function destroy($id) {
