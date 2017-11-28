@@ -18,20 +18,18 @@ CREATE TABLE Ryhma(
   perustettu DATE DEFAULT CURRENT_DATE
 );
 
---CREATE TABLE Hahmoluokka(
---  id SERIAL PRIMARY KEY,
---  name varchar(50) NOT NULL
---);
+CREATE TABLE Hahmoluokka(
+  id SERIAL PRIMARY KEY,
+  name varchar(50) NOT NULL
+);
 
---CREATE TABLE Hahmo(
---  id SERIAL PRIMARY KEY,
---  ryhma_id INTEGER REFERENCES Ryhma(id),
---  hahmoluokka_id INTEGER REFERENCES Hahmoluokka(id),
---  hahmo_name varchar(50) NOT NULL,
---  pelaaja_name varchar(50) NOT NULL,
---  tarina varchar(400),
---  added DATE
---);
+CREATE TABLE Hahmo(
+  id SERIAL PRIMARY KEY,
+  ryhma_id INTEGER REFERENCES Ryhma(id),
+  hahmoluokka_id INTEGER REFERENCES Hahmoluokka(id),
+  hahmo_name varchar(50) NOT NULL,
+  pelaaja_name varchar(50) NOT NULL
+);
 
 
 --tällä hetkellä rahmo on sidottu tiettyyn ryhmään, voisi toteuttaa myös seuraavanlaisella liitostaululla jolloin luotua hahmoa voisi pelata missä tahansa ryhmässä, pelin säännöt eivät ehkä salli tätä tapausta
