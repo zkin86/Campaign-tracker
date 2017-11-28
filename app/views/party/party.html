@@ -14,9 +14,9 @@
       <!-- Listataan hahmot tähän -->
       {% for character in characters %}
       <tr>
-        <td>{character.name}</td>
-        <td>{character.luokka}</td>
-        <td>{character.pname}</td>
+        <td><a href="{{base_path}}/campaign/{{character.party.kampanja_id}}/{{character.party.id}}/{{character.id}}">{{character.name}}</td>
+        <td>{{character.luokka}}</td>
+        <td>{{character.pname}}</td>
       </tr>
       {% endfor %}
     </tbody>

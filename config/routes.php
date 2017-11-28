@@ -38,7 +38,7 @@
 
   $routes->post('/campaign', function(){
     CampaignController::store();
-	});
+  });
 
   $routes->get('/campaign/new', function(){
     CampaignController::new();
@@ -79,6 +79,11 @@
   $routes->post('/campaign/:id/destroy', function($id){
 
   CampaignController::destroy($id);
+  });
+
+  $routes->get('/campaign/:cid/:pid/:id', function($cid, $pid, $id){
+
+  CharacterController::info($cid, $pid, $id);
   });
 
 

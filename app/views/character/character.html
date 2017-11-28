@@ -1,28 +1,40 @@
 {% extends "party/party.html" %}
-{% block character %}
-  <h1>Hahmon {{hahmo.name}} tiedot</h1>
-  <p>Ryhmän kokoonpano</p>
-  <table class="table table-striped table-bordered">
-    <thead>
+{% block char %}
+  <h1>Hahmon {{character.name}} tiedot</h1>
+  <p>
+    <button class="btn btn-danger">Poista</button> <a href="#" class="btn btn-default">Muokkaa</a>
+  </p>
+  <div class="container">
+    <table class="table table-striped table-bordered">
       <tr>
-        <th>Hahmo</th>
-        <th>Hahmoluokka</th>
-        <th>Taso</th>
+        <td><strong>Taso: </strong>{{character.lvl}}</td>
+        <td><strong>Kokemuspisteet: </strong>{{character.exp}}</td>
+        <td><strong>Kulta:</strong>{{character.gold}}</td>
+        <td><strong>Ominaisuudet: </strong>lista?</td>
+        <td><strong>tavarat:</strong>toinen lista?</td>
       </tr>
-    </thead>
-    <tbody>
-      <!-- Listataan hahmot tähän -->
       <tr>
-        <td><a href="#">hahmon linkki</a></td>
-        <td>örkki</td>
-        <td>100</td>
+        <td>{{character.lvl}}</td>
+        <td>{{character.exp}}</td>
+        <td>{{character.gold}}</td>
+        <td>
+          <ul>
+             {% for attr in attrs %}
+             <li>{item.name}</li>
+             {% endfor %}
+          </ul>
+        </td>
+        <td>
+          <ul>
+             {% for item in items %}
+             <li>{item.name}</li>
+             {% endfor %}
+          </ul>
+        </td>
       </tr>
-    </tbody>
-  </table>
-    <!--Yksittäisen hahmon tiedot seuraavaksi-->
-    <div class="content">
-      {% block char %}{% endblock %}
-    </div>
-
-
+    </table>
+  </div>
+  <p>
+      hahmon tarina?
+  </p>
 {% endblock %}

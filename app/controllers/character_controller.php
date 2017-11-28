@@ -4,12 +4,12 @@ require 'app/models/party.php';
 require 'app/models/campaign.php';
 
 class CharacterController extends BaseController{
-  public static function index($pid, $id){
-    $party = Party::find($pid);
-    $characters = Character::all_for_party($pid);
-    $character = Character::find($id);
-    View::make('character/index.html', array('party' => $party, 'characters' => $characters, 'character' => $character));
-  }
+//  public static function index($pid, $id){
+//    $party = Party::find($pid);
+//    $characters = Character::all_for_party($pid);
+//    $character = Character::find($id);
+//    View::make('character/index.html', array('party' => $party, 'characters' => $characters, 'character' => $character));
+//  }
 
 //  public static function store(){
 //	  $params = $_POST;
@@ -31,10 +31,12 @@ class CharacterController extends BaseController{
 //    View::make('campaign/edit.html', array('attributes' => $campaign));
 //  }
 
-  public static function info($id){
-    $party = Party::find($id);
-    $characters = Characters::all_for_party($id);
-    View::make('campaign/campaign.html', array('attributes' => $campaign, 'parties' => $parties));
+  public static function info($cid, $pid, $id){
+    $parties = Party::all_for_campaign($cid);
+    $characters = Character::all_for_party($pid);
+    $character = Character::find($id);
+    $campaign = Campaign::find($cid);
+    View::make('character/character.html', array('attributes' => $campaign, 'parties' => $parties, 'characters' => $characters, 'character' => $character));
   }
 
 //  public static function destroy($id) {

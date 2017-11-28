@@ -1,11 +1,11 @@
 <?php
 class Character extends BaseModel{
-  public $id, $luokka, $name, $pname;// $kulta, $taso, $exp;
+  public $id, $party, $luokka, $name, $pname;// $kulta, $taso, $exp;
   public function __construct($attributes){
     parent::__construct($attributes);
   }
   public static function all(){
-    $query = DB::connection()->prepare('SELECT Hahmoluokka.name AS luokka, Hahmo.hahmo_name AS name, Hahmo.pelaaja_name AS pname FROM Hahmo LEFT JOIN Hahmoluokka ON Hahmoluokka.id=Hahmo.hahmoluokka_id');
+    $query = DB::connection()->prepare('SELECT Hahmo.id AS id, Hahmoluokka.name AS luokka, Hahmo.hahmo_name AS name, Hahmo.pelaaja_name AS pname FROM Hahmo LEFT JOIN Hahmoluokka ON Hahmoluokka.id=Hahmo.hahmoluokka_id');
     $query->execute();
     $rows = $query->fetchAll();
     $characters = array();
@@ -13,6 +13,7 @@ class Character extends BaseModel{
     foreach($rows as $row){
       // Tämä on PHP:n hassu syntaksi alkion lisäämiseksi taulukkoon :)
       $characters[] = new Character(array(
+        'id' => $row['id'],
         'luokka' => $row['luokka'],
         'name' => $row['name'],
         'pname' => $row['pname'],
@@ -23,13 +24,17 @@ class Character extends BaseModel{
   }
 
   public static function all_for_party($pid) {
-    $query = DB::connection()->prepare('SELECT Hahmoluokka.name AS luokka, Hahmo.hahmo_name AS name, Hahmo.pelaaja_name AS pname FROM Hahmo LEFT JOIN Hahmoluokka ON Hahmo.hahmoluokka_id=Hahmoluokka.id WHERE Hahmo.ryhma_id = :pid');
+    $query = DB::connection()->prepare('SELECT Hahmo.id AS id, Hahmoluokka.name AS luokka, Hahmo.hahmo_name AS name, Hahmo.pelaaja_name AS pname FROM Hahmo LEFT JOIN Hahmoluokka ON Hahmo.hahmoluokka_id=Hahmoluokka.id WHERE Hahmo.ryhma_id = :pid');
     $query->execute(array('pid' => $pid));
     $rows = $query->fetchAll();
     $characters = array();
+    require_once 'app/models/party.php';
+    $party = Party::find($pid);
 
     foreach($rows as $row){
       $characters[] = new Character(array(
+        'id' => $row['id'],
+        'party' => $party,
         'luokka' => $row['luokka'],
         'name' => $row['name'],
         'pname' => $row['pname'],
@@ -40,7 +45,7 @@ class Character extends BaseModel{
   }
 
   public static function find($id){
-    $query = DB::connection()->prepare('SELECT * FROM Hahmo WHERE id = :id LIMIT 1');
+    $query = DB::connection()->prepare('SELECT Hahmo.id AS id, Hahmoluokka.name AS luokka, Hahmo.hahmo_name AS name, Hahmo.pelaaja_name AS pname FROM Hahmo LEFT JOIN Hahmoluokka ON Hahmo.hahmoluokka_id=Hahmoluokka.id WHERE Hahmo.id = :id');
     $query->execute(array('id' => $id));
     $row = $query->fetch();
 
