@@ -35,24 +35,35 @@ CREATE TABLE Hahmo(
   taso INTEGER NOT NULL DEFAULT 1
 );
 
-CREATE TABLE CampaignAchievements(
+CREATE TABLE K_saavutus(
   id SERIAL PRIMARY KEY,
--- ehkä kuitenkin liitoslista?  kampanja_id INTEGER REFERENCES Kampanja(id)
   name varchar(50) NOT NULL
 );
 
+CREATE TABLE KampanjanSaavutus(
+ kampanja_id INTEGER REFERENCES Kampanja(id),
+ saavutus_id INTEGER REFERENCES K_saavutus(id)
+);
 
---tällä hetkellä rahmo on sidottu tiettyyn ryhmään, voisi toteuttaa myös seuraavanlaisella liitostaululla jolloin luotua hahmoa voisi pelata missä tahansa ryhmässä, pelin säännöt eivät ehkä salli tätä tapausta
---CREATE TABLE RyhmanHahmo(
---  ryhma_id INTEGER REFERENCES Ryhma(id),
---  hahmo_id INTEGER REFERENCES Hahmo(id),
---);
+CREATE TABLE R_saavutus(
+ id SERIAL PRIMARY KEY,
+ name varchar(50) NOT NULL
+);
 
---CREATE TABLE Historia(
---  id SERIAL PRIMARY KEY,
---  Kampanja_id INTEGER REFERENCES Kampanja(id),
---  skenaario_name varchar(50) NOT NULL,
---  played DATE
---);
+CREATE TABLE RyhmanSaavutus(
+ ryhma_id INTEGER REFERENCES Ryhma(id),
+ saavutus_id INTEGER REFERENCES R_saavutus(id)
+);
 
---puuttuu taulut tavaroille, kampanjan ja ryhmien saavutuksille sekä liitostaulut hahmojen tavaroille ja kampanjan ja ryhmien saavutuksille, yhteensä 12 taulua
+CREATE TABLE Skenaario(
+ id SERIAL PRIMARY KEY,
+ name varchar(50) NOT NULL
+);
+
+CREATE TABLE Historia(
+  skenaario_id INTEGER REFERENCES Skenaario(id),
+  Kampanja_id INTEGER REFERENCES Kampanja(id),
+  played DATE NOT NULL DEFAULT CURRENT_DATE
+);
+
+--puuttuu taulu tavaroille sekä liitostaulu hahmojen tavaroille
