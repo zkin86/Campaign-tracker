@@ -2,12 +2,11 @@
 {% extends "base.html" %}
 {% block content %}
   <h1>{{attributes.name}}</h1>
-  <!-- Painikkeet tähän -->
   <p>
-  <!-- Poistopainike tulee tähän -->
-  {{forms.destroy_button("#{base_path}/campaign/#{attributes.id}/destroy", "Poista kampanja")}}
-  <a href="{{base_path}}/campaign/{{attributes.id}}/edit" class="btn btn-default">Muokkaa</a>
-</p>
+    <a href="{{base_path}}/campaign/{{attributes.id}}/new" class="btn btn-success">Lisää ryhmä</a>
+    <a href="{{base_path}}/campaign/{{attributes.id}}/edit" class="btn btn-default">Muokkaa kampanjan tietoja</a>
+    {{forms.destroy_button("#{base_path}/campaign/#{attributes.id}/destroy", "Poista kampanja")}}
+  </p>
   <table>
     <tr>
       <td><h2>Perustiedot</h2></td>
@@ -20,6 +19,7 @@
         <ul>
           <li><strong>Omistaja: </strong>{{user_logged_in.name}}</li>
           <li><strong>Saavutukset: </strong>attribuutti vielä puuttuu</li>
+          <li><strong>Gloomhavenin varallisuustaso: </strong>puuttuu vielä</li>
         </ul>
       </td>
       {% if parties %}
@@ -33,6 +33,8 @@
       {% endif %}
     </tr>
   </table>
+
+
 
   <div class="content">
     {% block party %}{% endblock %}

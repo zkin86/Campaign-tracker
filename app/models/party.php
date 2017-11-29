@@ -39,4 +39,14 @@ class Party extends BaseModel{
 
     return $parties;
   }
+
+  public function save($kampanja_id){
+    $query = DB::connection()->prepare('INSERT INTO Ryhma(kampanja_id, name) VALUES (:kampanja_id, :name);');
+    $query->execute(array('name' => $this->name, 'kampanja_id' => $kampanja_id));
+    $row = $query->fetch();
+    Kint::trace();
+    Kint::dump($row);
+    
+    //$this->id = $row['id'];
+  }
 }
