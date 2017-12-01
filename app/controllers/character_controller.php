@@ -32,6 +32,9 @@ class CharacterController extends BaseController{
 //  }
 
   public static function info($cid, $pid, $id){
+  	if(!isset($_SESSION['user'])){
+      Redirect::to('/login', array('message' => 'Kirjaudu ensin sisään!'));
+    }
     $parties = Party::all_for_campaign($cid);
     $party = Party::find($pid);
     $characters = Character::all_for_party($pid);

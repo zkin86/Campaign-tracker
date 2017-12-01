@@ -67,7 +67,21 @@
       <!-- Dynaaminen sisältö tulee tähän -->
       {% block content %}{% endblock %}
     </div>
+    <div id="messages and errors">
 
+      {% if message %}
+        <div class="alert alert-success">
+          {{message}}
+        </div>
+      {% endif %}
+
+      {% if error %}
+        <div class="alert alert-danger">
+          {{error}}
+        </div>
+      {% endif %}
+    </div>
+    
     {% block body %}
       <!-- jQuery -->
       <script src="{{base_path}}/assets/js/jquery.min.js"></script>

@@ -4,6 +4,9 @@ require 'app/models/campaign.php';
 class PartyController extends BaseController{
 
   public static function info($cid, $id){
+    if(!isset($_SESSION['user'])){
+      Redirect::to('/login', array('message' => 'Kirjaudu ensin sisään!'));
+    }
     $party = Party::find($id);
     $parties = Party::all_for_campaign($cid);
     $campaign = Campaign::find($cid);
@@ -13,11 +16,17 @@ class PartyController extends BaseController{
   }
 
   public static function new($id){
+    if(!isset($_SESSION['user'])){
+      Redirect::to('/login', array('message' => 'Kirjaudu ensin sisään!'));
+    }
     $campaign = Campaign::find($id);
     View::make('party/new.html', array('campaign' => $campaign));
   }
 
   public static function store($id){
+    if(!isset($_SESSION['user'])){
+      Redirect::to('/login', array('message' => 'Kirjaudu ensin sisään!'));
+    }
     $params = $_POST;
     $party = new Party(array(
       'name' => $params['name'],
