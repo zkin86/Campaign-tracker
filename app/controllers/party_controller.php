@@ -5,7 +5,7 @@ class PartyController extends BaseController{
 
   public static function info($cid, $id){
     if(!isset($_SESSION['user'])){
-      Redirect::to('/login', array('error' => 'Kirjaudu ensin sisään!'));
+      Redirect::to('/kirjautuminen', array('error' => 'Kirjaudu ensin sisään!'));
     }
     $party = Party::find($id);
 
@@ -23,7 +23,7 @@ class PartyController extends BaseController{
 
   public static function new($id){
     if(!isset($_SESSION['user'])){
-      Redirect::to('/login', array('error' => 'Kirjaudu ensin sisään!'));
+      Redirect::to('/kirjautuminen', array('error' => 'Kirjaudu ensin sisään!'));
     }
     $campaign = Campaign::find($id);
     $parties = Party::all_for_owner_not_in_campaign($id);
@@ -32,7 +32,7 @@ class PartyController extends BaseController{
 
   public static function store($id){
     if(!isset($_SESSION['user'])){
-      Redirect::to('/login', array('error' => 'Kirjaudu ensin sisään!'));
+      Redirect::to('/kirjautuminen', array('error' => 'Kirjaudu ensin sisään!'));
     }
     $params = $_POST;
     $party = new Party(array(
@@ -49,7 +49,7 @@ class PartyController extends BaseController{
 
   public static function edit($cid, $id){
     if(!isset($_SESSION['user'])){
-      Redirect::to('/login', array('error' => 'Kirjaudu ensin sisään!'));
+      Redirect::to('/kirjautuminen', array('error' => 'Kirjaudu ensin sisään!'));
     }
     $party = Party::find($id);
 

@@ -7,7 +7,7 @@ class CharacterController extends BaseController{
 
   public static function store($cid, $pid){
   	if(!isset($_SESSION['user'])){
-      Redirect::to('/login', array('error' => 'Kirjaudu ensin sisään!'));
+      Redirect::to('/kirjautuminen', array('error' => 'Kirjaudu ensin sisään!'));
     }
 	$params = $_POST;
     $character = new character(array(
@@ -24,21 +24,16 @@ class CharacterController extends BaseController{
 
   public static function new($cid, $pid){
   	if(!isset($_SESSION['user'])){
-      Redirect::to('/login', array('error' => 'Kirjaudu ensin sisään!'));
+      Redirect::to('/kirjautuminen', array('error' => 'Kirjaudu ensin sisään!'));
     }
     require_once 'app/models/character_class.php';
     $classes = CharacterClass::all();
   	View::make('character/new.html', array('classes' => $classes));
   }
-//
-//  public static function edit($id){
-//    $campaign = Campaign::find($id);
-//    View::make('campaign/edit.html', array('attributes' => $campaign));
-//  }
 
   public static function info($cid, $pid, $id){
   	if(!isset($_SESSION['user'])){
-      Redirect::to('/login', array('error' => 'Kirjaudu ensin sisään!'));
+      Redirect::to('/kirjautuminen', array('error' => 'Kirjaudu ensin sisään!'));
     }
     $parties = Party::all_for_campaign($cid);
     $party = Party::find($pid);
@@ -54,9 +49,4 @@ class CharacterController extends BaseController{
 
     Redirect::to('/campaign/'.$cid.'/'.$pid, array('error' => 'Hups, yritit urkkia ryhmään kuulumattoman hahmon tietoja!'));
   }
-
-//  public static function destroy($id) {
-//    Campaign::delete($id);
-//    Redirect::to('/campaign', array('message' => 'Tuhosit juuri kampanjan pysyvästi'));
-//  }
 }
