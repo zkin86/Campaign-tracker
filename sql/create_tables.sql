@@ -15,6 +15,7 @@ CREATE TABLE Kampanja(
 
 CREATE TABLE Ryhma(
   id SERIAL PRIMARY KEY,
+  omistaja_id INTEGER REFERENCES Omistaja(id),
   name varchar(50) NOT NULL,
   perustettu DATE DEFAULT CURRENT_DATE
 );
@@ -60,15 +61,15 @@ CREATE TABLE RyhmanSaavutus(
  saavutus_id INTEGER REFERENCES R_saavutus(id)
 );
 
-CREATE TABLE Skenaario(
- id SERIAL PRIMARY KEY,
- name varchar(50) NOT NULL
-);
+--CREATE TABLE Skenaario(
+-- id SERIAL PRIMARY KEY,
+-- name varchar(50) NOT NULL
+--);
 
-CREATE TABLE Historia(
-  skenaario_id INTEGER REFERENCES Skenaario(id),
-  Kampanja_id INTEGER REFERENCES Kampanja(id),
-  played DATE NOT NULL DEFAULT CURRENT_DATE
-);
+--CREATE TABLE Historia(
+--  skenaario_id INTEGER REFERENCES Skenaario(id),
+--  Kampanja_id INTEGER REFERENCES Kampanja(id),
+--  played DATE NOT NULL DEFAULT CURRENT_DATE
+--);
 
 --puuttuu taulu tavaroille sekä liitostaulu hahmojen tavaroille

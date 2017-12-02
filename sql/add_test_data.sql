@@ -15,14 +15,14 @@ VALUES (1, 'testikampanja2');
 INSERT INTO Kampanja(omistaja_id, name)
 VALUES (2, 'testikampanja3');
 
-INSERT INTO Ryhma( name)
-VALUES ('testiryhmä');
+INSERT INTO Ryhma(omistaja_id, name)
+VALUES (1, 'testiryhmä');
 
-INSERT INTO Ryhma( name)
-VALUES ('testiryhmä2');
+INSERT INTO Ryhma(omistaja_id, name)
+VALUES (1, 'testiryhmä2');
 
-INSERT INTO Ryhma( name)
-VALUES ('testiryhmä3');
+INSERT INTO Ryhma(omistaja_id, name)
+VALUES (1, 'testiryhmä3');
 
 INSERT INTO KampanjanRyhma(kampanja_id, ryhma_id)
 VALUES (1,1);

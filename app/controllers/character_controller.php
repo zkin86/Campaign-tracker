@@ -33,14 +33,21 @@ class CharacterController extends BaseController{
 
   public static function info($cid, $pid, $id){
   	if(!isset($_SESSION['user'])){
-      Redirect::to('/login', array('message' => 'Kirjaudu ensin sisään!'));
+      Redirect::to('/login', array('error' => 'Kirjaudu ensin sisään!'));
     }
     $parties = Party::all_for_campaign($cid);
     $party = Party::find($pid);
     $characters = Character::all_for_party($pid);
     $character = Character::find($id);
     $campaign = Campaign::find($cid);
-    View::make('character/character.html', array('attributes' => $campaign, 'parties' => $parties, 'party' => $party, 'characters' => $characters, 'character' => $character));
+    if(!is_null($character)) {
+    	if($character->party->id==$pid) {
+    		View::make('character/character.html', array('attributes' => $campaign, 'parties' => $parties, 'party' => $party, 'characters' => $characters, 'character' => $character));
+    	}
+    }
+
+
+    Redirect::to('/campaign/'.$cid.'/'.$pid, array('error' => 'Hups, yritit urkkia ryhmään kuulumattoman hahmon tietoja!'));
   }
 
 //  public static function destroy($id) {

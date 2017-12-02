@@ -7,7 +7,7 @@ class Party extends BaseModel{
 
   public static function find($id){
     $query = DB::connection()->prepare('SELECT Ryhma.id AS id, Ryhma.name AS name, KampanjanRyhma.kampanja_id AS kampanja_id FROM Ryhma LEFT JOIN KampanjanRyhma ON Ryhma.id = KampanjanRyhma.ryhma_id WHERE id = :id LIMIT 1;');
-    $query->execute(array('id' => $id));
+    $query->execute(array('id' => intval($id)));
     $row = $query->fetch();
     if($row){
       require_once 'app/models/campaign.php';
@@ -25,7 +25,7 @@ class Party extends BaseModel{
 
   public static function all_for_campaign($cid) {
     $query = DB::connection()->prepare('SELECT Ryhma.id AS id, Ryhma.name AS name, KampanjanRyhma.kampanja_id AS kampanja_id FROM Ryhma LEFT JOIN KampanjanRyhma ON Ryhma.id = KampanjanRyhma.ryhma_id WHERE kampanja_id = :cid;');
-    $query->execute(array('cid' => $cid));
+    $query->execute(array('cid' => intval($cid)));
     $rows = $query->fetchAll();
     $parties = array();
 

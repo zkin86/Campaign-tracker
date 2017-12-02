@@ -5,12 +5,12 @@ class PartyController extends BaseController{
 
   public static function info($cid, $id){
     if(!isset($_SESSION['user'])){
-      Redirect::to('/login', array('message' => 'Kirjaudu ensin sisään!'));
+      Redirect::to('/login', array('error' => 'Kirjaudu ensin sisään!'));
     }
     $party = Party::find($id);
 
     if(!is_null($party)) {
-      if($party->kampanja->omistaja_id==self::get_user_logged_in()->id) {
+      if($party->kampanja->id==$cid) {
         $parties = Party::all_for_campaign($cid);
         require_once 'app/models/character.php';
         $characters = Character::all_for_party($id);
@@ -18,12 +18,12 @@ class PartyController extends BaseController{
       }
     }
 
-    Redirect::to('/campaign/'.$cid, array('error' => 'Hups, yritit urkkia sinulle kuulumattoman ryhmän tietoja'));
+    Redirect::to('/campaign/'.$cid, array('error' => 'Hups, yritit urkkia kampanjaan kuulumattoman ryhmän tietoja'));
   }
 
   public static function new($id){
     if(!isset($_SESSION['user'])){
-      Redirect::to('/login', array('message' => 'Kirjaudu ensin sisään!'));
+      Redirect::to('/login', array('error' => 'Kirjaudu ensin sisään!'));
     }
     $campaign = Campaign::find($id);
     View::make('party/new.html', array('campaign' => $campaign));
@@ -31,7 +31,7 @@ class PartyController extends BaseController{
 
   public static function store($id){
     if(!isset($_SESSION['user'])){
-      Redirect::to('/login', array('message' => 'Kirjaudu ensin sisään!'));
+      Redirect::to('/login', array('error' => 'Kirjaudu ensin sisään!'));
     }
     $params = $_POST;
     $party = new Party(array(

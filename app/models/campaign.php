@@ -42,7 +42,7 @@ class Campaign extends BaseModel{
 
   public static function find($id){
     $query = DB::connection()->prepare('SELECT * FROM Kampanja WHERE id = :id LIMIT 1');
-    $query->execute(array('id' => $id));
+    $query->execute(array('id' => intval($id)));
     $row = $query->fetch();
 
     if($row){
@@ -69,9 +69,9 @@ class Campaign extends BaseModel{
   }
 
   public static function delete($id){
-    $query = DB::connection()->prepare('DELETE FROM Ryhma WHERE kampanja_id = :id');
+    $query = DB::connection()->prepare('DELETE FROM KampanjanRyhma WHERE kampanja_id = :id');
     $query->execute(array('id' => $id));
-    $query = DB::connection()->prepare('DELETE FROM Kampanja WHERE id = :id');
+    $query = DB::connection()->prepare('DELETE FROM KampanjanSaavutus WHERE kampanja_id = :id');
     $query->execute(array('id' => $id));
     $query = DB::connection()->prepare('DELETE FROM Kampanja WHERE id = :id');
     $query->execute(array('id' => $id));

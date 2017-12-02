@@ -23,4 +23,5 @@ require 'app/models/user.php';
     public static function home() {
       View::make('home/home.html');
     }
+
 }
