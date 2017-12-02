@@ -43,7 +43,7 @@ INSERT INTO Hahmoluokka(name) VALUES ('Mindthief');
 
 INSERT INTO Hahmoluokka(name) VALUES ('Tinkerer');
 
-INSERT INTO Hahmoluokka(name) VALUES ('Craighart');
+INSERT INTO Hahmoluokka(name) VALUES ('Cragheart');
 
 INSERT INTO Hahmo(ryhma_id, hahmoluokka_id, hahmo_name, pelaaja_name, kulta) VALUES (1,1,'Brutus', 'Pertti Pelaaja', 60);
 
