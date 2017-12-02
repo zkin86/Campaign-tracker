@@ -1,7 +1,7 @@
 -- Lisää CREATE TABLE lauseet tähän tiedostoon
 CREATE TABLE Omistaja(
   id SERIAL PRIMARY KEY,
-  name varchar(50) NOT NULL,
+  name varchar(50) NOT NULL UNIQUE,
   password varchar(50) NOT NULL
 );
 
@@ -12,11 +12,16 @@ CREATE TABLE Kampanja(
   prosperity INTEGER NOT NULL DEFAULT 1
 );
 
+
 CREATE TABLE Ryhma(
   id SERIAL PRIMARY KEY,
-  kampanja_id INTEGER REFERENCES Kampanja(id),
   name varchar(50) NOT NULL,
   perustettu DATE DEFAULT CURRENT_DATE
+);
+
+CREATE TABLE KampanjanRyhma(
+  kampanja_id INTEGER REFERENCES Kampanja(id) NOT NULL,
+  ryhma_id INTEGER REFERENCES Ryhma(id) NOT NULL
 );
 
 CREATE TABLE Hahmoluokka(
