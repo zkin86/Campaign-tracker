@@ -18,4 +18,18 @@ class CharacterClass extends BaseModel{
 
     return $classes;
   }
+
+  public static function find($id) {
+    $query = DB::connection()->prepare('SELECT * FROM Hahmoluokka WHERE id=:id LIMIT 1;');
+    $query->execute(array( 'id'=> $id));
+    $row = $query->fetch();
+    if($row){
+      $luokka = new CharacterClass(array(
+        'name' => $row['name'],
+        'id' => $row['id'],
+      ));
+    }
+    return $luokka;
+  }
+
 }

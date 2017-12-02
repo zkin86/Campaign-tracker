@@ -1,11 +1,12 @@
 <?php
+require 'app/models/character_class.php';
 class Character extends BaseModel{
   public $id, $party, $luokka, $name, $pname, $gold, $lvl, $exp;
   public function __construct($attributes){
     parent::__construct($attributes);
   }
   public static function all(){
-    $query = DB::connection()->prepare('SELECT Hahmo.id AS id, Hahmoluokka.name AS luokka, Hahmo.hahmo_name AS name, Hahmo.pelaaja_name AS pname FROM Hahmo LEFT JOIN Hahmoluokka ON Hahmoluokka.id=Hahmo.hahmoluokka_id');
+    $query = DB::connection()->prepare('SELECT Hahmo.id AS id, Hahmoluokka.id AS luokka, Hahmo.hahmo_name AS name, Hahmo.pelaaja_name AS pname FROM Hahmo LEFT JOIN Hahmoluokka ON Hahmoluokka.id=Hahmo.hahmoluokka_id');
     $query->execute();
     $rows = $query->fetchAll();
     $characters = array();
@@ -14,7 +15,7 @@ class Character extends BaseModel{
       // Tämä on PHP:n hassu syntaksi alkion lisäämiseksi taulukkoon :)
       $characters[] = new Character(array(
         'id' => $row['id'],
-        'luokka' => $row['luokka'],
+        'luokka' => CharacterClass::find($row['luokka']),
         'name' => $row['name'],
         'pname' => $row['pname'],
       ));
@@ -24,7 +25,7 @@ class Character extends BaseModel{
   }
 
   public static function all_for_party($pid) {
-    $query = DB::connection()->prepare('SELECT Hahmo.id AS id, Hahmoluokka.name AS luokka, Hahmo.hahmo_name AS name, Hahmo.pelaaja_name AS pname FROM Hahmo LEFT JOIN Hahmoluokka ON Hahmo.hahmoluokka_id=Hahmoluokka.id WHERE Hahmo.ryhma_id = :pid');
+    $query = DB::connection()->prepare('SELECT Hahmo.id AS id, Hahmoluokka.id AS luokka, Hahmo.hahmo_name AS name, Hahmo.pelaaja_name AS pname FROM Hahmo LEFT JOIN Hahmoluokka ON Hahmo.hahmoluokka_id=Hahmoluokka.id WHERE Hahmo.ryhma_id = :pid');
     $query->execute(array('pid' => intval($pid)));
     $rows = $query->fetchAll();
     $characters = array();
@@ -35,7 +36,7 @@ class Character extends BaseModel{
       $characters[] = new Character(array(
         'id' => $row['id'],
         'party' => $party,
-        'luokka' => $row['luokka'],
+        'luokka' => CharacterClass::find($row['luokka']),
         'name' => $row['name'],
         'pname' => $row['pname'],
       ));
@@ -53,6 +54,7 @@ class Character extends BaseModel{
       $character = new Character(array(
         'party' => Party::find($row['ryhma_id']),
         'id' => $id,
+        'luokka' => CharacterClass::find($row['hahmoluokka_id']),
         'name' => $row['hahmo_name'],
         'gold' => $row['kulta'],
         'exp' => $row['exp'],
@@ -65,4 +67,11 @@ class Character extends BaseModel{
     return null;
   }
 
+  public function save(){
+    $query = DB::connection()->prepare('INSERT INTO Hahmo(hahmo_name, pelaaja_name, ryhma_id, hahmoluokka_id) VALUES(:name, :pname, :pid, :class_id);');
+    $query->execute(array('name' => $this->name, 'pname' => $this->pname, 'pid' => $this->party->id, 'class_id' => $this->luokka->id));
+    $row = $query->fetch();
+    Kint::trace();
+    Kint::dump($row);
+  }
 }

@@ -67,7 +67,7 @@
   $routes->get('/campaign/:id', function($cid){
     CampaignController::info($cid);
   });
-  
+
   $routes->post('/campaign/:id/edit', function($id){
     CampaignController::update($id);
   });
@@ -88,8 +88,12 @@
     CharacterController::info($cid, $pid, $id);
   });
 
-  $routes->post('/campaign/:id', function($id){
-    PartyController::store($id);
+  $routes->post('/campaign/:id', function($cid){
+    PartyController::store($cid);
+  });
+
+  $routes->post('/campaign/:cid/:pid', function($cid, $pid){
+    CharacterController::store($cid, $pid);
   });
 
   $routes->get('/uusi', function(){

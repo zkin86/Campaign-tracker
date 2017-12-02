@@ -9,26 +9,27 @@ class CharacterController extends BaseController{
   	if(!isset($_SESSION['user'])){
       Redirect::to('/kirjautuminen', array('error' => 'Kirjaudu ensin sisään!'));
     }
-	$params = $_POST;
-    $character = new character(array(
-    'name' => $params['name'],
-    'pname' => $params['pname'],
-    'party' => Party::find($pid),
-    'class' => $params['class'],
+    $params = $_POST;
+    $character = new Character(array(
+      'name' => $params['name'],
+      'pname' => $params['pname'],
+      'party' => Party::find($pid),
+      'luokka' => CharacterClass::find($params['class']),
     ));
     Kint::dump($params);
-    $campaign->save();
+    $character->save();
 
-    Redirect::to('/campaign');
+    Redirect::to('/campaign/'.$cid.'/'.$pid);
   }
 
   public static function new($cid, $pid){
   	if(!isset($_SESSION['user'])){
       Redirect::to('/kirjautuminen', array('error' => 'Kirjaudu ensin sisään!'));
     }
+    $party = Party::find($pid);
     require_once 'app/models/character_class.php';
     $classes = CharacterClass::all();
-  	View::make('character/new.html', array('classes' => $classes));
+  	View::make('character/new.html', array('classes' => $classes, 'party' => $party));
   }
 
   public static function info($cid, $pid, $id){
