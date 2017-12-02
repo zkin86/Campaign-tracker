@@ -1,0 +1,28 @@
+{% extends "home/home.html" %}
+{% block login %}
+
+<h1>Luo uusi käyttäjätunnus</h1>
+
+  <form method="post" action="{{base_path}}/uusi">
+    <div class="form-group">
+      <label>Nimi</label>
+      <input name="username" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>Salasana</label>
+      <input class="form-control" name="password" type="password">
+    </div>
+
+
+  <div class="form-group">
+      <label>Kirjoita salasana uudelleen</label>
+      <input class="form-control" name="passwordcheck" type="password">
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Luo uusi käyttäjätunnus</button>
+    </div>
+
+  </form>
+{% endblock %}

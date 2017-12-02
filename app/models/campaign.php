@@ -5,7 +5,7 @@ class Campaign extends BaseModel{
     parent::__construct($attributes);
   }
   public static function all(){
-    $query = DB::connection()->prepare('SELECT * FROM Kampanja');
+    $query = DB::connection()->prepare('SELECT * FROM Kampanja ORDER BY name DESC');
     $query->execute();
     $rows = $query->fetchAll();
     $campaigns = array();
@@ -23,7 +23,7 @@ class Campaign extends BaseModel{
   }
 
   public static function all_for_user($id) {
-    $query = DB::connection()->prepare('SELECT * FROM Kampanja WHERE omistaja_id = :id');
+    $query = DB::connection()->prepare('SELECT * FROM Kampanja WHERE omistaja_id = :id ORDER BY name');
     $query->execute(array('id' => $id));
     $rows = $query->fetchAll();
     $campaigns = array();
@@ -69,7 +69,21 @@ class Campaign extends BaseModel{
   }
 
   public static function delete($id){
+    $query = DB::connection()->prepare('DELETE FROM Ryhma WHERE kampanja_id = :id');
+    $query->execute(array('id' => $id));
+    $query = DB::connection()->prepare('DELETE FROM Kampanja WHERE id = :id');
+    $query->execute(array('id' => $id));
     $query = DB::connection()->prepare('DELETE FROM Kampanja WHERE id = :id');
     $query->execute(array('id' => $id));
   }
+
+  public function update() {
+    $query = DB::connection()->prepare('UPDATE Kampanja SET name =:name WHERE id = :id;');
+    $query->execute(array('name' => $this->name, 'id' => $this->id));
+    $row = $query->fetch();
+    Kint::trace();
+    Kint::dump($row);
+  }
+
+
 }

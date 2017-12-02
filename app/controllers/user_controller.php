@@ -21,7 +21,39 @@ class UserController extends BaseController{
 
   public static function logout(){
     $_SESSION['user'] = null;
-    Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
+    Redirect::to('/kirjautuminen', array('message' => 'Olet kirjautunut ulos!'));
+  }
+
+  public static function new(){
+    View::make('user/new.html');
+  }
+
+  public static function store(){
+    $params = $_POST;
+
+    $user = new User(array(
+        'name' => $params['username'],
+        'password' => $params['password']
+    ));
+
+    if($params['password']==$params['passwordcheck'] and !User::used($user->name)) {
+
+     Kint::dump($params);
+
+      $user->save();
+
+      Redirect::to('/', array('message' => 'Tervetuloa Gloomhaven-kampanjaträkkerin käyttäjäksi '  . $user->name . '!'));
+    }
+
+    if($params['password']!=$params['passwordcheck']) {
+      $error = 'Kirjoita salasana uudelleen';
+    }
+
+    if(User::used($user->name)) {
+      $error = 'Käyttäjänimi on varattu, valitse uusi';
+    }
+
+    View::make('user/new.html', array('error' => $error, 'username' => $params['username']));
   }
   
 }

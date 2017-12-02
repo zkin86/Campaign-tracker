@@ -40,4 +40,24 @@ class User extends BaseModel{
 
     return null;
   }
+
+  public function save(){
+    $query = DB::connection()->prepare('INSERT INTO Omistaja(name, password) VALUES (:name, :password);');
+    $query->execute(array('name' => $this->name, 'password' => $this->password));
+    $row = $query->fetch();
+    Kint::trace();
+    Kint::dump($row);
+    
+    //$this->id = $row['id'];
+  }
+
+  public static function used($username){
+    $query = DB::connection()->prepare('SELECT * FROM Omistaja WHERE name=:name;');
+    $query->execute(array('name' => $username));
+    $row = $query->fetch();
+    if($row) {
+      return True;
+    }
+    return False;
+  }
 }

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+
   <div class="page-header">
     <h1>Tervetuloa Gloomhavenin kampanjaträkkeriin</h1>
   </div>
@@ -12,10 +13,9 @@
   	</p>
   </div>
 
-  {% if message %}
-      <div class="alert alert-success">
-        {{message}}
-      </div>
-  {% endif %}
+  <div class="content">
+    {% block login %}{% endblock %}
+  </div>
 
 {% endblock %}
+

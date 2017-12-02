@@ -54,6 +54,7 @@
             <li><a href="{{base_path}}/exit">Kirjaudu ulos</a></li>
           {% else %}
             <li><a href="{{base_path}}/kirjautuminen">Kirjaudu sisään</a></li>
+            <li><a href="{{base_path}}/uusi">Luo uusi käyttäjätunnus</a></li>
           {% endif %}
           
         </ul>
@@ -66,8 +67,6 @@
     <div id="main-container">
       <!-- Dynaaminen sisältö tulee tähän -->
       {% block content %}{% endblock %}
-    </div>
-    <div id="messages and errors">
 
       {% if message %}
         <div class="alert alert-success">
@@ -81,7 +80,7 @@
         </div>
       {% endif %}
     </div>
-    
+
     {% block body %}
       <!-- jQuery -->
       <script src="{{base_path}}/assets/js/jquery.min.js"></script>

@@ -1,15 +1,11 @@
 <?php
 
   $routes->get('/', function() {
-    HelloWorldController::index();
+    BaseController::home();
   });
 
   $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
-  });
-
-  $routes->get('/kirjautuminen', function() {
-    HelloWorldController::kirjautuminen();
   });
 
   $routes->get('/ryhma', function() {
@@ -44,11 +40,11 @@
     CampaignController::new();
   });
 
-  $routes->get('/login', function(){
+  $routes->get('/kirjautuminen', function(){
     UserController::login();
   });
 
-  $routes->post('/login', function(){
+  $routes->post('/kirjautuminen', function(){
     UserController::handle_login();
   });
 
@@ -87,6 +83,15 @@
   $routes->post('/campaign/:id', function($id){
     PartyController::store($id);
   });
+
+  $routes->get('/uusi', function(){
+    UserController::new();
+  });
+
+  $routes->post('/uusi', function(){
+    UserController::store();
+  });
+
 
 
 

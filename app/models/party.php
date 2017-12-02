@@ -1,19 +1,19 @@
 <?php
 class Party extends BaseModel{
-  public $id, $kampanja_id, $name;
+  public $id, $kampanja, $name;
   public function __construct($attributes){
     parent::__construct($attributes);
   }
 
   public static function find($id){
-    $query = DB::connection()->prepare('SELECT * FROM Ryhma WHERE id = :id LIMIT 1');
+    $query = DB::connection()->prepare('SELECT Ryhma.id AS id, Ryhma.name AS name, KampanjanRyhma.kampanja_id AS kampanja_id FROM Ryhma LEFT JOIN KampanjanRyhma ON Ryhma.id = KampanjanRyhma.ryhma_id WHERE id = :id LIMIT 1;');
     $query->execute(array('id' => $id));
     $row = $query->fetch();
-
     if($row){
+      require_once 'app/models/campaign.php';
       $party = new Party(array(
         'id' => $row['id'],
-        'kampanja_id' => $row['kampanja_id'],
+        'kampanja' => Campaign::find($row['kampanja_id']),
         'name' => $row['name'],
       ));
 
@@ -24,15 +24,16 @@ class Party extends BaseModel{
   }
 
   public static function all_for_campaign($cid) {
-    $query = DB::connection()->prepare('SELECT * FROM Ryhma WHERE kampanja_id = :cid');
+    $query = DB::connection()->prepare('SELECT Ryhma.id AS id, Ryhma.name AS name, KampanjanRyhma.kampanja_id AS kampanja_id FROM Ryhma LEFT JOIN KampanjanRyhma ON Ryhma.id = KampanjanRyhma.ryhma_id WHERE kampanja_id = :cid;');
     $query->execute(array('cid' => $cid));
     $rows = $query->fetchAll();
     $parties = array();
 
     foreach($rows as $row){
+      require_once 'app/models/campaign.php';
       $parties[] = new Party(array(
         'id' => $row['id'],
-        'kampanja_id' => $row['kampanja_id'],
+        'kampanja' => Campaign::find($row['kampanja_id']),
         'name' => $row['name'],
       ));
     }
@@ -41,9 +42,16 @@ class Party extends BaseModel{
   }
 
   public function save($kampanja_id){
-    $query = DB::connection()->prepare('INSERT INTO Ryhma(kampanja_id, name) VALUES (:kampanja_id, :name);');
-    $query->execute(array('name' => $this->name, 'kampanja_id' => $kampanja_id));
+    $query = DB::connection()->prepare('INSERT INTO Ryhma(name) VALUES (:name);');
+    $query->execute(array('name' => $this->name));
+    $query = DB::connection()->prepare('SELECT id FROM Ryhma WHERE name=:name ORDER BY Perustettu DESC LIMIT 1;');
+    $query->execute(array('name' => $this->name));
     $row = $query->fetch();
+    $pid=$row['id'];
+    $query = DB::connection()->prepare('INSERT INTO KampanjanRyhma(kampanja_id, ryhma_id) VALUES (:kampanja_id, :ryhma_id)');
+    $query->execute(array('kampanja_id' => $kampanja_id,'ryhma_id' => $pid));
+
+
     Kint::trace();
     Kint::dump($row);
     

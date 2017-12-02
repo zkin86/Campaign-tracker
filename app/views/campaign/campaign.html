@@ -26,7 +26,7 @@
       <td>
         <ul>
           {% for party in parties %}
-            <li><a href="{{base_path}}/campaign/{{party.kampanja_id}}/{{party.id}}">{{party.name}}</a>
+            <li><a href="{{base_path}}/campaign/{{party.kampanja.id}}/{{party.id}}">{{party.name}}</a>
           {% endfor %}
         </ul>
       </td>
@@ -40,15 +40,4 @@
     {% block party %}{% endblock %}
   </div>
 
-  {% if message %}
-      <div class="alert alert-success">
-        {{message}}
-      </div>
-  {% endif %}
-
-  {% if error %}
-    <div class="alert alert-danger">
-      {{error}}
-    </div>
-  {% endif %}
 {% endblock %}
