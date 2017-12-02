@@ -4,33 +4,33 @@
     BaseController::home();
   });
 
-  $routes->get('/hiekkalaatikko', function() {
-    HelloWorldController::sandbox();
-  });
+//  $routes->get('/hiekkalaatikko', function() {
+//    HelloWorldController::sandbox();
+//  });
 
-  $routes->get('/ryhma', function() {
-    HelloWorldController::ryhma();
-  });
+//  $routes->get('/ryhma', function() {
+//    HelloWorldController::ryhma();
+//  });
 
-  $routes->get('/historia', function() {
-    HelloWorldController::historia();
-  });
+//  $routes->get('/historia', function() {
+//    HelloWorldController::historia();
+//  });
 
-  $routes->get('/tavarat', function() {
-    HelloWorldController::tavarat();
-  });
+//  $routes->get('/tavarat', function() {
+//    HelloWorldController::tavarat();
+//  });
 
-  $routes->get('/kampanja', function() {
-    HelloWorldController::kampanja();
-  });
+ // $routes->get('/kampanja', function() {
+ //   HelloWorldController::kampanja();
+ // });
 
   $routes->get('/campaign', function() {
-  	CampaignController::index();
+    CampaignController::index();
   });
 
-  $routes->get('/hahmo', function() {
-    HelloWorldController::hahmo();
-  });
+//  $routes->get('/hahmo', function() {
+//    HelloWorldController::hahmo();
+//  });
 
   $routes->post('/campaign', function(){
     CampaignController::store();
