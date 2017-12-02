@@ -4,27 +4,32 @@ require 'app/models/party.php';
 require 'app/models/campaign.php';
 
 class CharacterController extends BaseController{
-//  public static function index($pid, $id){
-//    $party = Party::find($pid);
-//    $characters = Character::all_for_party($pid);
-//    $character = Character::find($id);
-//    View::make('character/index.html', array('party' => $party, 'characters' => $characters, 'character' => $character));
-//  }
 
-//  public static function store(){
-//	  $params = $_POST;
-//    $campaign = new Campaign(array(
-//      'name' => $params['name'],
-//      'omistaja_id' => self::get_user_logged_in()->id
-//    ));
-//    Kint::dump($params);
-//    $campaign->save();
-//
-//    Redirect::to('/campaign');
-//  }
-//  public static function new(){
-//  	View::make('campaign/new.html');
-//  }
+  public static function store($cid, $pid){
+  	if(!isset($_SESSION['user'])){
+      Redirect::to('/login', array('error' => 'Kirjaudu ensin sisään!'));
+    }
+	$params = $_POST;
+    $character = new character(array(
+    'name' => $params['name'],
+    'pname' => $params['pname'],
+    'party' => Party::find($pid),
+    'class' => $params['class'],
+    ));
+    Kint::dump($params);
+    $campaign->save();
+
+    Redirect::to('/campaign');
+  }
+
+  public static function new($cid, $pid){
+  	if(!isset($_SESSION['user'])){
+      Redirect::to('/login', array('error' => 'Kirjaudu ensin sisään!'));
+    }
+    require_once 'app/models/character_class.php';
+    $classes = CharacterClass::all();
+  	View::make('character/new.html', array('classes' => $classes));
+  }
 //
 //  public static function edit($id){
 //    $campaign = Campaign::find($id);
@@ -42,7 +47,7 @@ class CharacterController extends BaseController{
     $campaign = Campaign::find($cid);
     if(!is_null($character)) {
     	if($character->party->id==$pid) {
-    		View::make('character/character.html', array('attributes' => $campaign, 'parties' => $parties, 'party' => $party, 'characters' => $characters, 'character' => $character));
+    		View::make('character/character.html', array('campaign' => $campaign, 'parties' => $parties, 'party' => $party, 'characters' => $characters, 'character' => $character));
     	}
     }
 

@@ -65,18 +65,4 @@ class Character extends BaseModel{
     return null;
   }
 
-//  public function save(){
-//    $query = DB::connection()->prepare('INSERT INTO Kampanja(omistaja_id, name) VALUES (:omistaja_id, :name);');
-//    $query->execute(array('name' => $this->name, 'omistaja_id' => $this->omistaja_id));
-//    $row = $query->fetch();
-//    Kint::trace();
-//    Kint::dump($row);
-    
-    //$this->id = $row['id'];
-//  }
-
-//  public static function delete($id){
-//    $query = DB::connection()->prepare('DELETE FROM Kampanja WHERE id = :id');
-//    $query->execute(array('id' => $id));
-//  }
 }

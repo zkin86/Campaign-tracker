@@ -42,7 +42,7 @@ class CampaignController extends BaseController{
       Redirect::to('/login', array('error' => 'Kirjaudu ensin sisään!'));
     }
     $campaign = Campaign::find($id);
-    View::make('campaign/edit.html', array('attributes' => $campaign));
+    View::make('campaign/edit.html', array('campaign' => $campaign));
   }
 
   public static function info($id){
@@ -55,7 +55,7 @@ class CampaignController extends BaseController{
 
       require_once 'app/models/party.php';
       $parties = Party::all_for_campaign($id);
-      View::make('campaign/campaign.html', array('attributes' => $campaign, 'parties' => $parties));
+      View::make('campaign/campaign.html', array('campaign' => $campaign, 'parties' => $parties));
       }
     }
 

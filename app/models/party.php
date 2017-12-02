@@ -41,6 +41,25 @@ class Party extends BaseModel{
     return $parties;
   }
 
+  public static function all_for_owner_not_in_campaign($cid) {
+    $query = DB::connection()->prepare('SELECT Ryhma.id AS id, Ryhma.name AS name, KampanjanRyhma.kampanja_id AS kampanja_id FROM Ryhma LEFT JOIN KampanjanRyhma ON Ryhma.id = KampanjanRyhma.ryhma_id WHERE Ryhma.omistaja_id = :omistaja_id AND kampanja_id != :cid;');
+    require_once 'app/models/campaign.php';
+    $query->execute(array('cid' => intval($cid), 'omistaja_id' => Campaign::find($cid)->omistaja_id));
+    $rows = $query->fetchAll();
+    $parties = array();
+
+    foreach($rows as $row){
+      require_once 'app/models/campaign.php';
+      $parties[] = new Party(array(
+        'id' => $row['id'],
+        'kampanja' => Campaign::find($row['kampanja_id']),
+        'name' => $row['name'],
+      ));
+    }
+
+    return $parties;
+  }
+
   public function save($kampanja_id){
     $query = DB::connection()->prepare('INSERT INTO Ryhma(name) VALUES (:name);');
     $query->execute(array('name' => $this->name));
@@ -57,4 +76,5 @@ class Party extends BaseModel{
     
     //$this->id = $row['id'];
   }
+
 }

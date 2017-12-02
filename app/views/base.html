@@ -7,7 +7,7 @@
 
     <title>
       {% block title %}
-        Tietokantasovellus
+        Gloomhavenin kampanjanseurantatyökalu
       {% endblock %}
     </title>
 
@@ -41,20 +41,17 @@
           <!-- Navigaation linkit -->
           {% if user_logged_in %}
             <li><a href="{{base_path}}/campaign">Kampanjat</a></li>
-          {% else %}
-            <li><a href="{{base_path}}/kampanja">Kampanja</a></li>
-            <li><a href="{{base_path}}/ryhma">Ryhmät</a></li>
-            <li><a href="{{base_path}}/historia">Historia</a></li>
-            <li><a href="{{base_path}}/hahmo">hahmo</a></li>
           {% endif %}
         </ul>
         {% block kirjautunut %}
         <ul class="nav navbar-nav navbar-right">
           {% if user_logged_in %}
+            <li><a href="{{base_path}}/user">{{user_logged_in.name}}</a></li>
             <li><a href="{{base_path}}/exit">Kirjaudu ulos</a></li>
           {% else %}
-            <li><a href="{{base_path}}/kirjautuminen">Kirjaudu sisään</a></li>
             <li><a href="{{base_path}}/uusi">Luo uusi käyttäjätunnus</a></li>
+            <li><a href="{{base_path}}/kirjautuminen">Kirjaudu sisään</a></li>
+
           {% endif %}
           
         </ul>

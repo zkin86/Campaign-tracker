@@ -15,7 +15,7 @@ class UserController extends BaseController{
     }else{
       $_SESSION['user'] = $user->id;
 
-      Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $user->name . '!'));
+      Redirect::to('/', array('message' => 'Tervetuloa ' . $user->name . '!'));
     }
   }
 
@@ -41,6 +41,8 @@ class UserController extends BaseController{
      Kint::dump($params);
 
       $user->save();
+      $user = User::authenticate($params['username'], $params['password']);
+      $_SESSION['user'] = $user->id;
 
       Redirect::to('/', array('message' => 'Tervetuloa Gloomhaven-kampanjaträkkerin käyttäjäksi '  . $user->name . '!'));
     }
@@ -54,6 +56,18 @@ class UserController extends BaseController{
     }
 
     View::make('user/new.html', array('error' => $error, 'username' => $params['username']));
+  }
+
+  public static function info(){
+    if(!isset($_SESSION['user'])){
+      Redirect::to('/login', array('error' => 'Kirjaudu ensin sisään!'));
+    }
+    $user = User::find(self::get_user_logged_in()->id);
+    if(!is_null($user)) {
+      View::make('user/user.html', array('user' => $user));
+    }
+
+    Redirect::to('/', array('error' => 'Hupsista, jokin meni pieleen'));
   }
   
 }

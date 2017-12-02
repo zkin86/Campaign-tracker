@@ -52,20 +52,20 @@
     UserController::logout();
   });
 
-  $routes->get('/campaign/:id/edit', function($id){
-    CampaignController::edit($id);
+  $routes->get('/campaign/:cid/edit', function($cid){
+    CampaignController::edit($cid);
   });
 
-  $routes->get('/campaign/:id/new', function($id){
-    PartyController::new($id);
+  $routes->get('/campaign/:cid/new', function($cid){
+    PartyController::new($cid);
   });
 
-  $routes->get('/campaign/:cid/:id', function($cid, $id){
-    PartyController::info($cid, $id);
+  $routes->get('/campaign/:cid/:pid', function($cid, $pid){
+    PartyController::info($cid, $pid);
   });
 
-  $routes->get('/campaign/:id', function($id){
-    CampaignController::info($id);
+  $routes->get('/campaign/:id', function($cid){
+    CampaignController::info($cid);
   });
   
   $routes->post('/campaign/:id/edit', function($id){
@@ -74,6 +74,14 @@
 
   $routes->post('/campaign/:id/destroy', function($id){
     CampaignController::destroy($id);
+  });
+
+  $routes->get('/campaign/:cid/:pid/edit', function($cid, $pid){
+    PartyController::edit($cid, $pid);
+  });
+
+  $routes->get('/campaign/:cid/:pid/new', function($cid, $pid){
+    CharacterController::new($cid, $pid);
   });
 
   $routes->get('/campaign/:cid/:pid/:id', function($cid, $pid, $id){
@@ -90,6 +98,10 @@
 
   $routes->post('/uusi', function(){
     UserController::store();
+  });
+
+  $routes->get('/user/', function(){
+    UserController::info();
   });
 
 
