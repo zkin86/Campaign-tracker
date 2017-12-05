@@ -15,6 +15,27 @@
       }
     }
 
+    public function validate_string_length($string, $length){
+      if(strlen($string) >= $length) {
+        return TRUE;
+      }
+      return FALSE;
+    }
+
+    public function validate_string($string) {
+      if($string != '' && $string != null) {
+        return FALSE;
+      }
+      return TRUE;
+    }
+
+    public funcion validate_integer($integer){
+      if(intval($integer)===$integer) {
+        return TRUE;
+      }
+      return FALSE;
+    }
+
     public function errors(){
       // Lisätään $errors muuttujaan kaikki virheilmoitukset taulukkona
       $errors = array();

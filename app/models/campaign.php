@@ -1,6 +1,6 @@
 <?php
 class Campaign extends BaseModel{
-  public $id, $omistaja_id, $name;
+  public $id, $omistaja_id, $name, $prosperity;
   public function __construct($attributes){
     parent::__construct($attributes);
   }
@@ -16,6 +16,7 @@ class Campaign extends BaseModel{
         'id' => $row['id'],
         'omistaja_id' => $row['omistaja_id'],
         'name' => $row['name'],
+        'prosperity' => $row['prosperity'],
       ));
     }
 
@@ -33,6 +34,7 @@ class Campaign extends BaseModel{
       $campaigns[] = new Campaign(array(
         'id' => $row['id'],
         'omistaja_id' => $row['omistaja_id'],
+        'prosperity' => $row['prosperity'],
         'name' => $row['name'],
       ));
     }
@@ -50,6 +52,7 @@ class Campaign extends BaseModel{
         'id' => $row['id'],
         'omistaja_id' => $row['omistaja_id'],
         'name' => $row['name'],
+        'prosperity' => $row['prosperity'],
       ));
 
       return $campaign;
