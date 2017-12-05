@@ -29,7 +29,7 @@
       return TRUE;
     }
 
-    public funcion validate_integer($integer){
+    public function validate_integer($integer){
       if(intval($integer)===$integer) {
         return TRUE;
       }
