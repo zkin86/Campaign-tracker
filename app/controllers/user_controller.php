@@ -47,15 +47,17 @@ class UserController extends BaseController{
       Redirect::to('/', array('message' => 'Tervetuloa Gloomhaven-kampanjaträkkerin käyttäjäksi '  . $user->name . '!'));
     }
 
+    $errors = [];
+
     if($params['password']!=$params['passwordcheck']) {
-      $error = 'Kirjoita salasana uudelleen';
+      $errors[] = 'Kirjoita salasana uudelleen';
     }
 
     if(User::used($user->name)) {
-      $error = 'Käyttäjänimi on varattu, valitse uusi';
+      $errors[] = 'Käyttäjänimi on varattu, valitse uusi';
     }
 
-    View::make('user/new.html', array('error' => $error, 'username' => $params['username']));
+    View::make('user/new.html', array('errors' => $errors, 'username' => $params['username']));
   }
 
   public static function info(){

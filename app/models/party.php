@@ -76,5 +76,15 @@ class Party extends BaseModel{
     
     //$this->id = $row['id'];
   }
+  public static function delete($id){
+    $query = DB::connection()->prepare('DELETE FROM KampanjanRyhma WHERE ryhma_id = :id');
+    $query->execute(array('id' => $id));
+    $query = DB::connection()->prepare('DELETE FROM RyhmanSaavutus WHERE ryhma_id = :id');
+    $query->execute(array('id' => $id));
+    $query = DB::connection()->prepare('DELETE FROM Hahmo WHERE ryhma_id = :id');
+    $query->execute(array('id' => $id));
+    $query = DB::connection()->prepare('DELETE FROM Ryhma WHERE id = :id');
+    $query->execute(array('id' => $id));
+  }
 
 }
