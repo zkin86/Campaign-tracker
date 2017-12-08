@@ -44,4 +44,17 @@ class CharacterController extends BaseController{
 
     Redirect::to('/campaign/'.$cid.'/'.$pid, array('error' => 'Hups, yritit urkkia ryhmään kuulumattoman hahmon tietoja!'));
   }
+
+  public static function edit($cid, $pid, $chid){
+    self::check_logged_in();
+    $character = Character::find($chid);
+
+    if(!is_null($character)) {
+      if($character->party->id==$pid) {
+        View::make('character/edit.html', array( 'character' => $character));
+      }
+    }
+
+    Redirect::to('/campaign/'.$cid, array('error' => 'Hups, yritit urkkia kampanjaan kuulumattoman ryhmän tietoja'));
+  }
 }

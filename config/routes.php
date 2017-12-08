@@ -108,6 +108,14 @@
     UserController::info();
   });
 
+  $routes->get('/campaign/:cid/:pid/:chid/edit', function($cid, $pid, $chid){
+    CharacterController::edit($cid, $pid, $chid);
+  });
+
+  $routes->post('/campaign/:cid/:pid/:chid', function($cid, $pid, $chid){
+    CharacterController::store($cid, $pid, $chid);
+  });
+
 
 
 
