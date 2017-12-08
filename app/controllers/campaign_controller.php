@@ -32,7 +32,9 @@ class CampaignController extends BaseController{
   public static function edit($id){
     self::check_logged_in();
     $campaign = Campaign::find($id);
-    View::make('campaign/edit.html', array('campaign' => $campaign));
+    require_once 'app/models/party.php';
+    $parties = Party::all_for_campaign($id);
+    View::make('campaign/edit.html', array('campaign' => $campaign, 'parties' => $parties));
   }
 
   public static function info($id){

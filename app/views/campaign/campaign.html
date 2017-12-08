@@ -3,9 +3,7 @@
 {% block content %}
   <h1>{{campaign.name}}</h1>
   <p>
-    <a href="{{base_path}}/campaign/{{campaign.id}}/new" class="btn btn-success">Lisää ryhmä</a>
     <a href="{{base_path}}/campaign/{{campaign.id}}/edit" class="btn btn-default">Muokkaa kampanjan tietoja</a>
-    {{forms.destroy_button("#{base_path}/campaign/#{campaign.id}/destroy", "Poista kampanja")}}
   </p>
   <table>
     <tr>

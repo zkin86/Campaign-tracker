@@ -3,9 +3,7 @@
   <h2>{{party.name}}</h2>
 
   <p>
-    <a href="{{base_path}}/campaign/{{party.kampanja.id}}/{{party.id}}/new" class="btn btn-success">Lisää hahmo</a>
     <a href="{{base_path}}/campaign/{{party.kampanja.id}}/{{party.id}}/edit" class="btn btn-default">Muokkaa ryhmän tietoja</a>
-    {{forms.destroy_button("#{base_path}/campaign/#{party.kampanja.id}/#{party.id}/destroy", "Poista ryhmä")}}
   </p>
 
   <h4>Ryhmän perustiedot</h4>

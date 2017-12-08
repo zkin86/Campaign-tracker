@@ -76,6 +76,10 @@
     CampaignController::destroy($id);
   });
 
+  $routes->post('/campaign/:id/rdestroy', function($id){
+    PartyController::destroy($id);
+  });
+
   $routes->get('/campaign/:cid/:pid/edit', function($cid, $pid){
     PartyController::edit($cid, $pid);
   });

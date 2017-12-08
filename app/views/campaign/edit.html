@@ -16,18 +16,20 @@
     <button type="submit" class="btn btn-primary">Muokkaa</button>
   </form>
 </div>
-
+<div class="form-group">
 <a href="{{base_path}}/campaign/{{campaign.id}}/new" class="btn btn-success">Lisää ryhmä</a>
-<br>
-<select form_id="R_poisto">
-	{% if parties %}
-	  {% for party in parties %}
-	    <option value={{party.id}}>{{party.name}}</option>
-	  {% endfor %}
-	{% endif %}
-</select>
-{{forms.destroy_button("#{base_path}/campaign/#{party.kampanja.id}/#{party.id}/destroy", "Poista ryhmä", "R_poisto")}}
-<br>
+</div>
+<!-- {% if parties %}
+  <div class="form-group">
+    <select name="pid" form="R_poisto">
+	    {% for party in parties %}
+	      <option value={{party.id}}>{{party.name}}</option>
+      {% endfor %}
+    </select>
+    {{forms.destroy_button("#{base_path}/campaign/#{campaign.id}/rdestroy", "Poista ryhmä", "R_poisto")}}
+  </div>
+{% endif %} -->
+<div class="form-group">
 {{forms.destroy_button("#{base_path}/campaign/#{campaign.id}/destroy", "Poista kampanja", "K_poisto")}}
-
+</div>
 {% endblock %}

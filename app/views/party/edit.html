@@ -2,9 +2,7 @@
 {% block content %}
   <h2>{{party.name}}</h2>
 
-  Muokataanko täällä ryhmän kokoonpanoa ja muita tietoja?
-
-  <h4>Ryhmän perustiedot</h4>
+  <a href="{{base_path}}/campaign/{{party.kampanja.id}}/{{party.id}}/new" class="btn btn-success">Lisää hahmo</a>
   <ul>
     <li>Saavutukset: puuttuu vielä</li>
     <li>Maine: puuttuu myöskin</li>

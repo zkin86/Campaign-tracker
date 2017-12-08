@@ -55,4 +55,12 @@ class PartyController extends BaseController{
 
     Redirect::to('/campaign/'.$cid, array('error' => 'Hups, yritit urkkia kampanjaan kuulumattoman ryhmän tietoja'));
   }
+
+  public static function destroy($id) {
+    self::check_logged_in();
+    $params =$_POST;
+    $party = Party::find($params['pid']);
+    Party::delete($party->id);
+    Redirect::to('/campaign/'.$party->kampanja->id, array('message' => 'Poistit juuri Ryhmän ' . $party->name .' pysyvästi!'));
+  }
 }

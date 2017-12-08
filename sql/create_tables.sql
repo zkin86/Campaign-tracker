@@ -15,14 +15,14 @@ CREATE TABLE Kampanja(
 
 CREATE TABLE Ryhma(
   id SERIAL PRIMARY KEY,
-  omistaja_id INTEGER REFERENCES Omistaja(id),
+  omistaja_id INTEGER REFERENCES Omistaja(id) DELETE ON CASCADE,
   name varchar(50) NOT NULL,
   perustettu DATE DEFAULT CURRENT_DATE
 );
 
 CREATE TABLE KampanjanRyhma(
-  kampanja_id INTEGER REFERENCES Kampanja(id) NOT NULL,
-  ryhma_id INTEGER REFERENCES Ryhma(id) NOT NULL
+  kampanja_id INTEGER REFERENCES Kampanja(id) DELETE ON CASCADE NOT NULL,
+  ryhma_id INTEGER REFERENCES Ryhma(id) DELETE ON CASCADE NOT NULL
 );
 
 CREATE TABLE Hahmoluokka(
@@ -32,8 +32,8 @@ CREATE TABLE Hahmoluokka(
 
 CREATE TABLE Hahmo(
   id SERIAL PRIMARY KEY,
-  ryhma_id INTEGER REFERENCES Ryhma(id),
-  hahmoluokka_id INTEGER REFERENCES Hahmoluokka(id),
+  ryhma_id INTEGER REFERENCES Ryhma(id)  DELETE ON CASCADE,
+  hahmoluokka_id INTEGER REFERENCES Hahmoluokka(id) DELETE ON CASCADE,
   hahmo_name varchar(50) NOT NULL,
   pelaaja_name varchar(50) NOT NULL,
   kulta INTEGER NOT NULL DEFAULT 30,
@@ -47,8 +47,8 @@ CREATE TABLE K_saavutus(
 );
 
 CREATE TABLE KampanjanSaavutus(
- kampanja_id INTEGER REFERENCES Kampanja(id),
- saavutus_id INTEGER REFERENCES K_saavutus(id)
+ kampanja_id INTEGER REFERENCES Kampanja(id) DELETE ON CASCADE,
+ saavutus_id INTEGER REFERENCES K_saavutus(id) DELETE ON CASCADE
 );
 
 CREATE TABLE R_saavutus(
@@ -57,8 +57,8 @@ CREATE TABLE R_saavutus(
 );
 
 CREATE TABLE RyhmanSaavutus(
- ryhma_id INTEGER REFERENCES Ryhma(id),
- saavutus_id INTEGER REFERENCES R_saavutus(id)
+ ryhma_id INTEGER REFERENCES Ryhma(id) DELETE ON CASCADE,
+ saavutus_id INTEGER REFERENCES R_saavutus(id) DELETE ON CASCADE
 );
 
 --CREATE TABLE Skenaario(
