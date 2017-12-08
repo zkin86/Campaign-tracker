@@ -38,7 +38,7 @@ class PartyController extends BaseController{
 
     $party->save($id);
 
-    Redirect::to('/campaign/'.$id);
+    Redirect::to('/campaign/'.$id.'/edit' );
   }
 
   public static function edit($cid, $id){
@@ -61,6 +61,6 @@ class PartyController extends BaseController{
     $params =$_POST;
     $party = Party::find($params['pid']);
     Party::delete($party->id);
-    Redirect::to('/campaign/'.$party->kampanja->id, array('message' => 'Poistit juuri Ryhmän ' . $party->name .' pysyvästi!'));
+    Redirect::to('/campaign/'.$party->kampanja->id, array('message' => 'Poistit juuri ryhmän ' . $party->name .' pysyvästi!'));
   }
 }
