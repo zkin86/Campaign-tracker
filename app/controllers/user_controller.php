@@ -59,9 +59,7 @@ class UserController extends BaseController{
   }
 
   public static function info(){
-    if(!isset($_SESSION['user'])){
-      Redirect::to('/login', array('error' => 'Kirjaudu ensin sisään!'));
-    }
+    self::check_logged_in();
     $user = User::find(self::get_user_logged_in()->id);
     if(!is_null($user)) {
       View::make('user/user.html', array('user' => $user));

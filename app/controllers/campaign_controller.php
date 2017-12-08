@@ -62,7 +62,8 @@ class CampaignController extends BaseController{
     $params = $_POST;
     $campaign = new Campaign(array(
       'name' => $params['name'],
-      'id' => $id
+      'id' => $id,
+      'prosperity' => $params['prosperity']
     ));
 
     Kint::dump($params);

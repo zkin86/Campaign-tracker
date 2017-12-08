@@ -6,9 +6,7 @@ require 'app/models/campaign.php';
 class CharacterController extends BaseController{
 
   public static function store($cid, $pid){
-  	if(!isset($_SESSION['user'])){
-      Redirect::to('/kirjautuminen', array('error' => 'Kirjaudu ensin sisään!'));
-    }
+    self::check_logged_in();
     $params = $_POST;
     $character = new Character(array(
       'name' => $params['name'],
@@ -23,9 +21,7 @@ class CharacterController extends BaseController{
   }
 
   public static function new($cid, $pid){
-  	if(!isset($_SESSION['user'])){
-      Redirect::to('/kirjautuminen', array('error' => 'Kirjaudu ensin sisään!'));
-    }
+    self::check_logged_in();
     $party = Party::find($pid);
     require_once 'app/models/character_class.php';
     $classes = CharacterClass::all();
@@ -33,9 +29,7 @@ class CharacterController extends BaseController{
   }
 
   public static function info($cid, $pid, $id){
-  	if(!isset($_SESSION['user'])){
-      Redirect::to('/kirjautuminen', array('error' => 'Kirjaudu ensin sisään!'));
-    }
+    self::check_logged_in();
     $parties = Party::all_for_campaign($cid);
     $party = Party::find($pid);
     $characters = Character::all_for_party($pid);

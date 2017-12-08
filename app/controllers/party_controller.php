@@ -4,9 +4,7 @@ require 'app/models/campaign.php';
 class PartyController extends BaseController{
 
   public static function info($cid, $id){
-    if(!isset($_SESSION['user'])){
-      Redirect::to('/kirjautuminen', array('error' => 'Kirjaudu ensin sisään!'));
-    }
+    self::check_logged_in();
     $party = Party::find($id);
 
     if(!is_null($party)) {
@@ -22,18 +20,14 @@ class PartyController extends BaseController{
   }
 
   public static function new($id){
-    if(!isset($_SESSION['user'])){
-      Redirect::to('/kirjautuminen', array('error' => 'Kirjaudu ensin sisään!'));
-    }
+    self::check_logged_in();
     $campaign = Campaign::find($id);
     $parties = Party::all_for_owner_not_in_campaign($id);
     View::make('party/new.html', array('campaign' => $campaign, 'parties' => $parties));
   }
 
   public static function store($id){
-    if(!isset($_SESSION['user'])){
-      Redirect::to('/kirjautuminen', array('error' => 'Kirjaudu ensin sisään!'));
-    }
+    self::check_logged_in();
     $params = $_POST;
     $party = new Party(array(
       'name' => $params['name'],
@@ -48,9 +42,7 @@ class PartyController extends BaseController{
   }
 
   public static function edit($cid, $id){
-    if(!isset($_SESSION['user'])){
-      Redirect::to('/kirjautuminen', array('error' => 'Kirjaudu ensin sisään!'));
-    }
+    self::check_logged_in();
     $party = Party::find($id);
 
     if(!is_null($party)) {

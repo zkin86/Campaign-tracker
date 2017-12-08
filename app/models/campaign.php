@@ -81,8 +81,8 @@ class Campaign extends BaseModel{
   }
 
   public function update() {
-    $query = DB::connection()->prepare('UPDATE Kampanja SET name =:name WHERE id = :id;');
-    $query->execute(array('name' => $this->name, 'id' => $this->id));
+    $query = DB::connection()->prepare('UPDATE Kampanja SET name =:name, prosperity=:prosperity WHERE id = :id;');
+    $query->execute(array('name' => $this->name, 'prosperity' => $this->prosperity, 'id' => $this->id));
     $row = $query->fetch();
     Kint::trace();
     Kint::dump($row);
