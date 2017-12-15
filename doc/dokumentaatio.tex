@@ -1,25 +1,49 @@
 \documentclass[a4paper, 10pt]{article}
- \usepackage[finnish]{babel}
- \usepackage[utf8]{inputenc}
- \usepackage[T1]{fontenc}
- \usepackage[margin=1.0in]{geometry}
-
- \title{TSOHA-dokumentaatio}%otsikko
- \author{Eerikki Lehtinen}%tekijät
- \date{\today}%päiväys
+\usepackage[finnish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
  
- \begin{document}
- \maketitle
-	\section*{Johdanto}Harjoitustyön aiheena on tehdä kampanjanseuraustyöväline lautapelille Gloomhaven. Järjestelmän käyttäjät voivat hallinnoida ja seurata kampanjoidensa etenemistä ja pitää kirjaa erinäisistä asioista. Pelin fyysinen kopio muokkautuu mitä pidemmälle peliä pelaa ja järjestelmä pitää kirjaa näistä muutoksista. Jokaiseen peliin liittyy 1 tai useampi peliryhmä ja jokaisessa ryhmässä on 1-4 pelihahmoa. Yhteen kampanjaan eli fyysiseen peliin liittyy tietty määrä saavutuksia jotka avaavat pelimaailmaa kaikille ryhmille. Pelissä on lukuisia skenaarioita mutta suoritettuja skenaarioita ei kampanjassa voi enää yrittää uudestaan. Peliryhmällä on myös olemassa omia saavutuksiaan. Pelihahmoilla on taasen taso ja muita ominaisuuksia sekä kokoelma erilaisia esineitä, yksi esineiden instanssit ovat uniikkeja ryhmän sisällä, mutta samoja esineitä voi olla muiden ryhmien hahmoilla. Hahmoilla on myös henkilökohtainen tehtävä jonka suoritettua hahmo eläköityy välittömästi ja sen tilalle valitaan uusi hahmo.
-	\section*{Käyttötapaukset}
-		\begin{itemize}
+
+\title{TSOHA-dokumentaatio}%otsikko
+\author{Eerikki Lehtinen}%tekijät
+\date{\today}%päiväys
+ 
+\begin{document}
+\maketitle
+	\section*{Johdanto}Harjoitustyön aiheena on tehdä kampanjanseuraustyöväline lautapelille Gloomhaven. Järjestelmän käyttäjät voivat hallinnoida ja seurata kampanjoidensa etenemistä ja pitää kirjaa erinäisistä siihen liittyvistä asioista. Pelin fyysinen kopio muokkautuu mitä pidemmälle peliä pelaa ja järjestelmä pitää kirjaa näistä muutoksista. Jokaiseen kampanjaan liittyy 1 tai useampi peliryhmä ja jokaisessa ryhmässä on 1-4 pelihahmoa, jokaisella hahmolla on vastaavasti oma hahmoluokkansa rajatuista vaihtoehdoista, hahmoilla on myös omat ominaisuutensa joista voi pitää kirjaa sovelluksella.
+	\section*{Yleiskuva järjestelmästä}
+		\subsection*{Käyttötapauskaavio}
+			\includegraphics{käyttötapaukset.png}
+		\subsection*{Käyttäjäryhmät}
+			Sovelluksen ainoa käyttäjäryhmä on rekisteröinyt käyttäjä.
+		\subsection*{Käyttötapauskuvaukset}
+			Kirjautunut käyttäjä:
+			Kuka tahansa voi rekisteröityä sovelluksen käyttäjäksi. Ainoastaan rekisteröityneet käyttäjät pystyvät luomaan ja tarkastelemaan kampanjoidensa, ryhmiensa ja niihin liittyvien hahmojen tietoja. Rekisteröinyt käyttäjä pystyy selailemaan,  luomaan, muokkaamaan ja poistamaan kampanjoita, kampanjoihin liittyviä ryhmiä, sekä ryhmiin liittyviä hahmoja.
+	\section*{Järjestelmän tietosisältö}
+		\begin{tabular}{| l | l | l | }
+			\hline			
+			Attribuutti & Arvojoukko & Kuvailu \\
+			Hahmon nimi & Merkkijono & Hahmolle keksitty nimi \\
+			Pelaajan nimi & Merkkijono & Pelaajan nimi, muotoa Etunimi Sukunimi\\
+			Taso & Kokonaisluku & Hahmon taso, uudella hahmolla 1\\
+			Kokemus & Kokonaisluku & Hahmon kokemuspisteet, uudella hahmolla 0\\
+			Kulta & Kokonaisluku & Hahmon kultakolikoiden määrä, uudella hahmolla 30\\
+			\hline  
+		\end{tabular}
 			\item Käyttäjä, hallitsee kampanjaa, voi omistaa yhden tai useamman kampanjan
 			\item Kampanja, fyysinen pelikopio, sitä pelaa yksi tai useampi ryhmä
 			\item Ryhmä, kussakin ryhmässä on yksi tai useampi hahmo
 			\item hahmo, hahmolla on nimi, hahmoluokka, taso, esineitä, ominaisuuksia, kultaa ja kokemuspisteitä sekä henkilökohtainen tehtävä 
 			\item hahmoluokat, rajoitettu 1 per ryhmä, mutta voi olla useammassa eri ryhmässä
-			\item esineet, rajoitettu 1 per ryhmä, mutta voi olla useammassa eri ryhmässä testi?
 		\end{itemize}
+	\section*{Relaatiotietokantakaavio}
+	\section*{Järjestelmän yleisrakenne}
+	\section*{Käyttöliittymä ja järjestelmän komponentit}
+	\section*{Asennustiedot}
+	\section*{Käynnistys- / käyttöohje}
 	 %\begin{thebibliography}{}
 	 %\end{thebibliography}
- \end{document}
+\end{document}

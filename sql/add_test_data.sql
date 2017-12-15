@@ -3,26 +3,20 @@
 INSERT INTO Omistaja(name, password)
 VALUES ('testaaja', 'erittäinvaikeasalasana');
 
-INSERT INTO Omistaja(name, password)
-VALUES ('eerikki', 'kalasana');
+INSERT INTO Kampanja(omistaja_id, name)
+VALUES (1, 'Gloomhaven1');
 
 INSERT INTO Kampanja(omistaja_id, name)
-VALUES (1, 'testikampanja');
-
-INSERT INTO Kampanja(omistaja_id, name)
-VALUES (1, 'testikampanja2');
-
-INSERT INTO Kampanja(omistaja_id, name)
-VALUES (2, 'testikampanja3');
+VALUES (1, 'Toinen yritys');
 
 INSERT INTO Ryhma(omistaja_id, name)
-VALUES (1, 'testiryhmä');
+VALUES (1, 'Ryhmä Rämä');
 
 INSERT INTO Ryhma(omistaja_id, name)
-VALUES (1, 'testiryhmä2');
+VALUES (1, 'Team Ahma');
 
 INSERT INTO Ryhma(omistaja_id, name)
-VALUES (1, 'testiryhmä3');
+VALUES (1, 'Rakettiryhmä');
 
 INSERT INTO KampanjanRyhma(kampanja_id, ryhma_id)
 VALUES (1,1);
