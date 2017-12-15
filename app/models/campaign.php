@@ -72,10 +72,6 @@ class Campaign extends BaseModel{
   }
 
   public static function delete($id){
-    $query = DB::connection()->prepare('DELETE FROM KampanjanRyhma WHERE kampanja_id = :id');
-    $query->execute(array('id' => $id));
-    $query = DB::connection()->prepare('DELETE FROM KampanjanSaavutus WHERE kampanja_id = :id');
-    $query->execute(array('id' => $id));
     $query = DB::connection()->prepare('DELETE FROM Kampanja WHERE id = :id');
     $query->execute(array('id' => $id));
   }

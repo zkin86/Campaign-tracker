@@ -13,8 +13,7 @@ class CampaignController extends BaseController{
 	  $params = $_POST;
     $campaign = new Campaign(array(
       'name' => $params['name'],
-
-      'omistaja_id' => $omistaja
+      'omistaja_id' => self::get_user_logged_in()->id
     ));
 
     Kint::dump($params);
