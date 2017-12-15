@@ -1,5 +1,5 @@
- http://ejmlehti.users.cs.helsinki.fi/tsoha/
- Copyright (C) 2017  Eerikki Lehtinen
+<http://ejmlehti.users.cs.helsinki.fi/tsoha/>
+ Copyright (C) <2017>  <Eerikki Lehtinen>
 
  GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
