@@ -120,6 +120,14 @@
     CharacterController::store($cid, $pid, $chid);
   });
 
+  $routes->post('/campaign/:cid/:pid/:chid/edit', function($cid, $pid, $chid){
+    CharacterController::update($cid, $pid, $chid);
+  });
+
+  $routes->post('/character/:chid/destroy', function($chid){
+    CharacterController::destroy($chid);
+  });
+
 
 
 

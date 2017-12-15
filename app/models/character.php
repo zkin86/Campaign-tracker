@@ -74,4 +74,17 @@ class Character extends BaseModel{
     Kint::trace();
     Kint::dump($row);
   }
+
+  public static function delete($id){
+    $query = DB::connection()->prepare('DELETE FROM Hahmo WHERE id = :id');
+    $query->execute(array('id' => $id));
+  }
+
+  public function update() {
+    $query = DB::connection()->prepare('UPDATE Hahmo SET hahmo_name =:name, taso=:lvl, kulta=:gold, exp=:exp WHERE id = :id;');
+    $query->execute(array('name' => $this->name, 'lvl' => $this->lvl, 'gold' => $this->gold, 'exp' => $this->exp, 'id' => $this->id));
+    $row = $query->fetch();
+    Kint::trace();
+    Kint::dump($row);
+  }
 }

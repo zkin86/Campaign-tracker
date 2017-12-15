@@ -6,18 +6,18 @@
   <form method="post" action="{{base_path}}/uusi">
     <div class="form-group">
       <label>Nimi</label>
-      <input name="username" value="{{username}}" class="form-control" type="text">
+      <input name="username" value="{{username}}" class="form-control" type="text" required="required">
     </div>
 
     <div class="form-group">
       <label>Salasana</label>
-      <input class="form-control" name="password" type="password">
+      <input class="form-control" name="password" type="password" required="required">
     </div>
 
 
   <div class="form-group">
       <label>Kirjoita salasana uudelleen</label>
-      <input class="form-control" name="passwordcheck" type="password">
+      <input class="form-control" name="passwordcheck" type="password" required="required">
     </div>
 
     <div class="form-group">

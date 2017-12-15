@@ -3,14 +3,10 @@
   <h2>{{party.name}}</h2>
 
   <p>
+    {{forms.destroy_button("#{base_path}/campaign/#{party.kampanja.id}/#{party.id}/destroy", "Poista ryhmä", "R_poisto")}}
     <a href="{{base_path}}/campaign/{{party.kampanja.id}}/{{party.id}}/edit" class="btn btn-default">Muokkaa ryhmän tietoja</a>
   </p>
 
-  <h4>Ryhmän perustiedot</h4>
-  <ul>
-    <li>Saavutukset: puuttuu vielä</li>
-    <li>Maine: puuttuu myöskin</li>
-  </ul>
   <p>Ryhmän kokoonpano</p>
   <table class="table table-striped table-bordered">
     <thead>

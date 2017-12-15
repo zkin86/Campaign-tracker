@@ -57,4 +57,30 @@ class CharacterController extends BaseController{
 
     Redirect::to('/campaign/'.$cid, array('error' => 'Hups, yritit urkkia kampanjaan kuulumattoman ryhmän tietoja'));
   }
+
+  public static function destroy($chid) {
+    self::check_logged_in();
+    $params =$_POST;
+    $character = Character::find($chid);
+    Character::delete($character->id);
+    Redirect::to('/campaign/'.$party->kampanja->id, array('message' => 'Poistit juuri hahmon ' . $character->name .' pysyvästi!'));
+  }
+
+  public static function update($cid, $pid, $id) {
+    self::check_logged_in();
+    $params = $_POST;
+    $character = new Character(array(
+      'name' => $params['name'],
+      'id' => $id,
+      'lvl' => $params['level'],
+      'exp' => $params['exp'],
+      'gold' => $params['gold']
+    ));
+
+    Kint::dump($params);
+
+    $character->update();
+
+    Redirect::to('/campaign/'.$cid.'/'.$pid, array('message' => 'Muokkasit hahmoa '  . $character->name .'!'));
+  }
 }

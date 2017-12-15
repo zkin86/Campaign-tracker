@@ -3,9 +3,7 @@
 {% block content %}
   <h1>{{campaign.name}}</h1>
   <p>
-    <div class="form-group">
     {{forms.destroy_button("#{base_path}/campaign/#{campaign.id}/destroy", "Poista kampanja", "K_poisto")}}
-    </div>
     <a href="{{base_path}}/campaign/{{campaign.id}}/edit" class="btn btn-default">Muokkaa kampanjan tietoja</a>
   </p>
   <table>
@@ -19,7 +17,6 @@
       <td>
         <ul>
           <li><strong>Omistaja: </strong>{{user_logged_in.name}}</li>
-          <li><strong>Saavutukset: </strong>attribuutti vielä puuttuu</li>
           <li><strong>Gloomhavenin varallisuustaso: </strong>{{campaign.prosperity}}</li>
         </ul>
       </td>
